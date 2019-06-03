@@ -1,0 +1,45 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_WindyMountainEventTrigger_b348f19b-9dca-4599-b555-152ee1af7d14)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+GlobalGetFlag("TRIGGEREDWIND", 0)
+THEN
+TriggerSetAtmosphere(TRIGGERGUID_MountainATMTrigger_b7b9cbe7-dc55-4dcf-8065-527317761512, "a1e81a39-f0c8-4c8a-99de-c9e55b41c71f");
+GlobalSetFlag("TRIGGEREDWIND");
+
+IF
+CharacterUsedItem(_character, ITEMGUID_NAT_Entrances_Cave_Slate_C_Dynamic_000_b99ccbf4-7042-466a-90ab-189396310193)
+AND
+GlobalGetFlag("HIDALTAR", 0)
+THEN
+SetOnStage(ITEMGUID_UnravelerAltar_e2671d2f-eb2f-4492-a876-dd05a727f08b, 0);
+GlobalSetFlag("HIDALTAR");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_MountainWormEventTrigger_1d50313f-f6e9-49d9-879e-d37b1046d048)
+AND
+GlobalGetFlag("TRIGGEREDMOUNTAINWORM", 0)
+THEN
+SetOnStage(CHARACTERGUID_TRHU_Mountain_Worm_000_066ec08f-11fb-4493-94a5-8cb90708bab0, 1);
+CharacterAppearAt(CHARACTERGUID_TRHU_Mountain_Worm_000_066ec08f-11fb-4493-94a5-8cb90708bab0, TRIGGERGUID_MountaintWormPointTrigger_fb9c9ec2-9773-401f-a1ff-71e280a6af40, 1, "");
+GlobalSetFlag("TRIGGEREDMOUNTAINWORM");
+//DisplayText(_character, "I'm feeling wormy");
+
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_ThisIsSteepEventTrigger_96996f9b-f62c-4eb7-b075-3f56926613cc)
+AND
+GlobalGetFlag("SAIDSTEEP", 0)
+THEN
+DisplayText(_character, "Whoa, this is steep!!!");
+GlobalSetFlag("SAIDSTEEP");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "ManyHappyReturns"

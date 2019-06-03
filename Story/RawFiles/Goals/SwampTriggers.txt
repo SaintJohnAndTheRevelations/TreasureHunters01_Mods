@@ -1,0 +1,33 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_GiantDungWormEventTrigger_7a1bdaaf-0c84-4718-9bd6-214b9348470c)
+AND
+GlobalGetFlag("TRIGGEREDURSALA", 0)
+THEN
+CharacterAppearAt(CHARACTERGUID_TRHU_Ursala_000_fa67c3cb-2d10-4daa-80f4-ce3c595a94d4, TRIGGERGUID_UrsalaSpawnPointTrigger_56d8b9a9-8ce9-4dd1-a246-c6e4e46feaff, 1, "");
+GlobalSetFlag("TRIGGEREDURSALA");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_MudTurtleEventTrigger_aeac9630-b3b3-45b3-a2a3-de2766bd2b6f)
+AND
+GlobalGetFlag("TRIGGEREDMUDTURTLES", 0)
+THEN
+CharacterAppearAt(CHARACTERGUID_TRHU_Mud_Turtle_000_5ad81ccd-dd2e-47b9-989a-b005b08000e2, TRIGGERGUID_MudTurtle000PointTrigger_ac11d8c4-91b5-4049-98ba-f822b1756eb7, 1, "");
+CharacterAppearAt(CHARACTERGUID_TRHU_Mud_Turtle_001_aba26ae2-208f-4915-b5f9-6d03477c3ea6, TRIGGERGUID_MudTurtle001PointTrigger_7a84c22e-3fc0-43aa-8dbd-fbea07f66d9d, 1, "");
+CharacterAppearAt(CHARACTERGUID_TRHU_Mud_Turtle_002_35fda9a9-b933-46f8-bf29-1423cd380a62, TRIGGERGUID_MudTurtle002PointTrigger_5256a06e-4703-4a84-8213-a0dd2b754ed0, 1, "");
+GlobalSetFlag("TRIGGEREDMUDTURTLES");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_TrollSlugDisplayTextEventTrigger_abf2b723-ab08-449d-9b3c-6106b037e078)
+AND
+CharacterIsDead(CHARACTERGUID_TRHU_Slug_Troll_001_c255ed13-6688-4430-8f45-c220990eb6e8, 0)
+THEN
+DisplayText(CHARACTERGUID_TRHU_Slug_Troll_001_c255ed13-6688-4430-8f45-c220990eb6e8, "There is a witch around here hunting trolls, I saw her!");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "PaymentFailed"

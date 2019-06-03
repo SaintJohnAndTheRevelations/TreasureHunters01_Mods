@@ -1,0 +1,33 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_GhostDeerEventTrigger_6e298ada-d9a7-435c-a309-ce3e03be2184)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+CharacterIsInCombat(_character, 0)
+AND
+GlobalGetFlag("METDEERSPIRIT", 0)
+THEN
+DisplayText(_character, "Whoa! What's that?");
+CharacterAppearAt(CHARACTERGUID_Animals_Deer_A_Ghost_000_f6bd3869-3a40-499a-afcb-77beb515e012, _character, 1, "");
+//CharacterMoveTo(CHARACTERGUID_Animals_Deer_A_Ghost_000_f6bd3869-3a40-499a-afcb-77beb515e012, TRIGGERGUID_DeerSpiritPointTrigger_ea112379-29a1-4687-8ad9-29cce7818bdc, 0, "", 1);
+GlobalSetFlag("METDEERSPIRIT");
+TimerLaunch("DeerLeave", 3000);
+
+IF
+TimerFinished("DeerLeave")
+THEN
+CharacterMoveTo(CHARACTERGUID_Animals_Deer_A_Ghost_000_f6bd3869-3a40-499a-afcb-77beb515e012, TRIGGERGUID_DeerSpiritPointTrigger_ea112379-29a1-4687-8ad9-29cce7818bdc, 0, "", 0);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_Animals_Deer_A_Ghost_000_f6bd3869-3a40-499a-afcb-77beb515e012, TRIGGERGUID_DeerSpiritDisappearEventTrigger_4d304ebd-abaa-43d9-91ed-f39487b453cf)
+THEN
+SetOnStage(CHARACTERGUID_Animals_Deer_A_Ghost_000_f6bd3869-3a40-499a-afcb-77beb515e012, 0);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "TowerForest"

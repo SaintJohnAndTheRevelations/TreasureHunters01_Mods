@@ -1,0 +1,51 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterUsedItem(_character, ITEMGUID_teleporttodemoncavepipe_b856664c-b3d0-4f6a-b8c6-b47127c6ade6)
+AND
+CharacterIsDead(CHARACTERGUID_TRHU_Ilminka2_000_77184f06-2a35-45e4-985a-b28b9bae7878, 1)
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_CrateDarkRoomTeleportTrigger_4170c4dc-b4a2-46a1-94c0-4efc96dbdea0, "");
+TimerLaunch("InCrate", 6000);
+ObjectSetFlag(_character, "QuestUpdate_StowAway_Completed");
+PartyAddExperience(_character, 1, 1, 100);
+
+IF
+CharacterUsedItem(_character, ITEMGUID_StowAwayCrate_90ad90e7-792e-40dd-8d3d-13c64a3e364c)
+AND
+CharacterIsDead(CHARACTERGUID_TRHU_Ilminka2_000_77184f06-2a35-45e4-985a-b28b9bae7878, 1)
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_CrateDarkRoomTeleportTrigger_4170c4dc-b4a2-46a1-94c0-4efc96dbdea0, "");
+TimerLaunch("InCrate", 6000);
+ObjectSetFlag(_character, "QuestUpdate_StowAway_Completed");
+PartyAddExperience(_character, 1, 1, 100);
+
+IF
+TimerFinished("InCrate")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DemonCaveTeleportTrigger_d7cd0590-25d2-4fe3-91e0-4f75e481b557, "");
+
+IF
+GlobalFlagSet("FAILEDDEMONQUEST")
+THEN
+SetFaction(CHARACTERGUID_TRHU_Wik_001_59b9a307-385c-4712-af66-fda25a396f7d, "Evil NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_003_e59ab21d-cc58-4250-828a-fd36ad57d38a, "Evil NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_004_04c9acff-4879-4466-aaf5-74d701a945e0, "Evil NPC");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_SmellTrollMeatEventTrigger_8dd1724c-ff5c-40fc-9eca-b06f88609b54)
+AND
+CharacterIsDead(CHARACTERGUID_TRHU_Ilminka2_000_77184f06-2a35-45e4-985a-b28b9bae7878, 1)
+AND
+GlobalGetFlag("SMELLEDTROLLMEAT", 0)
+THEN
+DisplayText(_character, "Gross, I can smell the troll meat from here, do I really have to climb in to this thing?");
+GlobalSetFlag("SMELLEDTROLLMEAT");
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "PaymentFailed"

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1528593438" />
+    <version major="3" minor="1" revision="8" build="0" />
+    <region id="Markers">
+        <node id="root">
+            <children>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Serf Cafe Hidden Entrance" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="SerfCafeHiddenEntrance" type="22" />
+                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerLevel" value="DukeLand" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Item" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="0b484569-a8fc-4967-9e2b-212faee2a007" type="22" />
+                </node>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Forgotten Cave" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="ForgottenCaveEntrance" type="22" />
+                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerLevel" value="FreedomLevel" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Character" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="d2ce85a6-479a-4e98-98d9-eda53eb75866" type="22" />
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

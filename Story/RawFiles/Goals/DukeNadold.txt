@@ -1,0 +1,180 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Dialogs("DukeMeet");
+DB_DukeGuests1(CHARACTERGUID_Humans_Female_Clothing_Rich_000_578eea6d-10c9-45cc-8cba-82b0b0cdcd2b);
+DB_DukeGuests2(CHARACTERGUID_Humans_Female_Clothing_Rich_001_cea85cde-def0-4eba-8331-aa7119a7e2a2);
+DB_DukeGuests1(CHARACTERGUID_Humans_Female_Clothing_Rich_002_e6b3ab32-71e7-49cf-a7e2-10b37f9a6b8c);
+DB_DukeGuests2(CHARACTERGUID_Humans_Female_Clothing_Rich_003_c9247e68-ce3c-42bb-8197-fce07330b600);
+DB_DukeGuests2(CHARACTERGUID_Humans_Female_Clothing_Rich_004_ffa5ed11-8eb6-4fb5-8d3a-214ea2872fe8);
+DB_DukeGuests2(CHARACTERGUID_Humans_Female_Clothing_Rich_005_b3403c9b-607c-4b0c-8170-0869eb543f7f);
+DB_DukeGuests2(CHARACTERGUID_Humans_Female_Clothing_Rich_006_22a61354-f445-4893-8409-df561b7841e8);
+DB_DukeGuests2(CHARACTERGUID_Humans_Male_Clothing_Rich_000_c7647208-f271-40ae-b163-94ed4920ba05);
+DB_DukeGuests1(CHARACTERGUID_Humans_Male_Clothing_Rich_001_5aa0bc13-5cd3-4ed7-9c36-de71b0a5f55f);
+DB_DukeGuests2(CHARACTERGUID_Humans_Male_Clothing_Rich_002_dbdf1f1a-4ef5-4540-a057-9243c8380213);
+DB_DukeGuests1(CHARACTERGUID_Humans_Male_Clothing_Rich_003_83079c50-bf4a-4c31-a080-4ff23460659b);
+DB_DukeGuests2(CHARACTERGUID_Humans_Male_Clothing_Rich_004_f1ac096f-1ac5-4033-a24d-b078bc3f8925);
+DB_DukeGuests2(CHARACTERGUID_Humans_Male_Clothing_Rich_005_239e6682-1082-4d3d-b02b-b801e058cc2e);
+DB_DukeGuests2(CHARACTERGUID_Humans_Male_Clothing_Rich_006_d792d81e-b63e-4816-9762-e95fe20ae926);
+DB_DukeGuests2(CHARACTERGUID_Humans_Male_Clothing_Rich_007_75906cab-8300-4e62-9ea4-7661d461c31e);
+DB_DukeGuests1(CHARACTERGUID_Humans_Male_Clothing_Rich_008_d73eb602-92d1-49db-901a-90546edd3e4f);
+DB_DukeGuests2(CHARACTERGUID_Humans_Male_Clothing_Rich_009_34216934-1f38-46b5-98dc-c1d744695cca);
+DB_DukeGuests2(CHARACTERGUID_Humans_Male_Clothing_Rich_010_d2e5c6f3-bdf8-4a95-adfc-6fe01236f03a);
+DB_DukeGuests2(CHARACTERGUID_Humans_Male_Clothing_Rich_011_f6b87e97-ddf6-4028-89cd-51900cb35d47);
+DB_DukeGuests2(CHARACTERGUID_Humans_Male_Clothing_Rich_012_26a8f5f9-9aa9-4ddc-8ffa-134c3feedb83);
+DB_RedajTalker();
+KBSECTION
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_DukeBedroomTrigger_a6031abe-5949-49de-85b2-400acf9aa684)
+AND
+GlobalGetFlag("ENTEREDDUKEBEDROOM", 0)
+THEN
+GlobalSetFlag("ENTEREDDUKEBEDROOM");
+DisplayText(CHARACTERGUID_DukeNadold_c46b9d3a-8acc-41ae-82d2-3cbf63ddfeff, "Who's there?! Redaj?");
+DisplayText(CHARACTERGUID_PrincessKanvia_22a61354-f445-4893-8409-df561b7841e8, "Father! Look out!");
+CharacterMoveToAndTalk(CHARACTERGUID_DukeNadold_c46b9d3a-8acc-41ae-82d2-3cbf63ddfeff, _character, "DukeMeet", 0, "", 1, 20.0);
+CharacterMoveTo(CHARACTERGUID_PrincessKanvia_22a61354-f445-4893-8409-df561b7841e8, _character, 1, "", 0);
+
+IF 
+CharacterUsedItem(_character, ITEMGUID_DominationMirror_49b1e1f1-b120-4017-853c-4fee3c60f491)
+THEN
+ItemDestroy(ITEMGUID_DominationMirror_49b1e1f1-b120-4017-853c-4fee3c60f491);
+GlobalSetFlag("MIRRORBROKE");
+DisplayText(_character, "Uh oh...");
+ObjectSetFlag(_character, "QuestUpdate_StealMirror_BrokeMirror");
+CharacterDie(CHARACTERGUID_StairOneDukeGuard_fc9d4d03-2062-4ddd-850a-625b7f882426, 1, "Incinerate");
+CharacterDie(CHARACTERGUID_StairOneTalkingGuard_db2d50c7-5e70-4b10-b6cb-23e5acd419ad, 1, "Incinerate");
+
+IF
+GlobalFlagSet("DUKESTARTFIGHT")
+AND
+DB_DukeGuests1(_magat1)
+AND
+DB_DukeGuests2(_magat2)
+THEN
+SetFaction(_magat1, "Evil NPC");
+SetFaction(_magat2, "Evil NPC");
+TimerLaunch("DukeGuestsFirstWave", 20000);
+TimerLaunch("DukeGuestsSecondWave", 120000);
+SetFaction(CHARACTERGUID_TRHU_Redaj_000_6ddd4362-bf3a-4a41-b31b-5101be41541c, "Evil NPC");
+SetFaction(CHARACTERGUID_PrincessKanvia_22a61354-f445-4893-8409-df561b7841e8, "Evil NPC");
+SetFaction(CHARACTERGUID_DukeNadold_c46b9d3a-8acc-41ae-82d2-3cbf63ddfeff, "Evil NPC");
+SetFaction(CHARACTERGUID_DukeFrontDoorGuard_6bba28f4-5218-42a3-8d6e-1623185e0c49, "Evil NPC");
+SetFaction(CHARACTERGUID_StairOneDukeGuard_fc9d4d03-2062-4ddd-850a-625b7f882426, "Evil NPC");
+SetFaction(CHARACTERGUID_TRHU_Duke_Guard_A_002_a47a3f8e-1e2a-4f62-8607-1941ca925621, "Evil NPC");
+SetFaction(CHARACTERGUID_TRHU_Duke_Guard_A_003_d8c2f52e-fe34-4635-aeab-a4dfc0597c27, "Evil NPC");
+SetFaction(CHARACTERGUID_StairOneTalkingGuard_db2d50c7-5e70-4b10-b6cb-23e5acd419ad, "Evil NPC");
+
+IF
+TimerFinished("DukeGuestsFirstWave")
+AND
+DB_DukeGuests1(_magat)
+THEN
+TeleportTo(_magat, TRIGGERGUID_DukeSecondLevelTeleportTrigger_41c46988-d741-42c5-a7a4-1cc8b00145ce);
+CharacterMoveTo((CHARACTERGUID)_magat, CHARACTERGUID_DukeNadold_c46b9d3a-8acc-41ae-82d2-3cbf63ddfeff, 0, "", 0);
+
+/*
+IF
+TimerFinished("DukeGuestsSecondWave")
+AND
+DB_DukeGuests2(_magat)
+THEN
+TeleportTo(_magat, TRIGGERGUID_DukeSecondLevelTeleportTrigger_41c46988-d741-42c5-a7a4-1cc8b00145ce);
+//CharacterMoveTo((CHARACTERGUID)_magat, CHARACTERGUID_DukeNadold_c46b9d3a-8acc-41ae-82d2-3cbf63ddfeff, 0, "", 0);
+*/
+
+IF
+GlobalFlagSet("ISNIGHTTIME")
+THEN
+GlobalClearFlag("HASWELCOMEDTOMARKET");
+SetOnStage(CHARACTERGUID_Humans_Female_Clothing_001_79c178e9-c252-4580-b45b-59051c503189, 0);
+SetOnStage(CHARACTERGUID_DukeMarketCivilian001_256035f2-9f52-4b86-981d-7ccb5024f652, 0);
+SetOnStage(CHARACTERGUID_DukeMarketCivilian002_513d424f-e5e7-467a-9055-5fbc6ea591ad, 0);
+SetOnStage(CHARACTERGUID_DukeMarketCivilian003_2ff8b4fb-1e43-43d5-9fe9-94591b409403, 0);
+SetOnStage(CHARACTERGUID_DukeMarketCivilian004_1f852315-8991-47dd-bf46-251b131d7f56, 0);
+SetOnStage(CHARACTERGUID_DukeMarketCivilian005_762ddbde-c163-4b3e-8583-1631605640c1, 0);
+SetOnStage(CHARACTERGUID_DukeMarketCivilian006_9a0d4b69-9e8b-4ca3-834c-630870449b9f, 0);
+SetOnStage(CHARACTERGUID_DukeMarketCivilian007_87fbacf0-a14d-4914-a309-fd0bcc56733f, 0);
+SetOnStage(CHARACTERGUID_Feshina_91cd0a92-d3f3-4fc8-932e-bbce6aaf9d72, 0);
+SetOnStage(CHARACTERGUID_Garth_bdabe8ae-44df-47e2-b6e0-b36773c8bc71, 0);
+SetOnStage(CHARACTERGUID_AlemdenFishSeller_2fa76e4f-eeda-46be-bb56-b3029b228043, 0);
+SetOnStage(CHARACTERGUID_IllianiArcanaTrader_c1df4a11-d960-4ee9-a934-010de0c53ac0, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Bread_A_000_f5e0e938-f8aa-40ac-b6a2-63f367c0ce46, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Garlic_A_000_ff9a16a1-b38d-4ba6-b246-44d57d384bb0, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Garlic_A_002_3e8db94b-8c49-4f47-9528-8e2f66279d80, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Garlic_A_003_b5702086-7300-45c6-8f37-338cf3e3714b, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Grapes_A_000_2ee52278-d4b5-459c-b581-63e3788ae193, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Lemon_A_000_87965c9a-1475-4bf7-868d-bc7c2cd1b077, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Onion_A_000_76219227-2003-4f24-9f7f-814909857283, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Onion_A_002_ad016195-4153-4874-ab0b-0cdd6674e5a7, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Onion_A_001_0b83ea1a-b50a-4f20-afb5-ff319b6af943, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Orange_A_004_96e5f7c9-a768-4e78-b5fa-2a1a4cf3d843, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Tomato_A_004_e1879af5-e40c-4b6e-ac55-f4f410695db5, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Tomato_A_005_28742f51-7116-4a2b-89f1-c102ee4ee5d9, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Tomato_A_006_4adea2c4-9ecd-4f59-9899-764790effc0c, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_Tomato_A_008_f17aad02-78f5-4bdd-a74b-d4617044a05e, 0);
+SetOnStage(ITEMGUID_NIGHTTCON_Food_WaterMelon_A_000_a1552def-c3cc-4dfd-8fa4-4a898436ff23, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_004_aca1d6c6-0e77-41e9-a65d-94ad8a3e7535, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_005_45044713-8bdb-4f04-b7cd-750830242447, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_006_180363d9-f84b-4f8a-806a-6111dcd77270, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_007_b3fd2ddb-984a-41ba-8510-7f58d5457de4, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_008_ef490d35-9aea-467b-91d2-be1d79319d7a, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_009_70f17da1-ca8a-42ac-88fb-7200173c5207, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_010_32e5bfc5-4b6d-445c-b264-da4daf06de58, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_011_465f84fb-a103-4f62-b675-d1b9f9a8183c, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_012_fa793f47-4920-4963-aef1-7df249d6b791, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_013_b80ff5e8-9ce1-48e0-9913-616a70af3bd3, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_014_ac78b8a9-307c-48ae-b842-817db63b8298, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_015_e4645404-608a-4fea-a091-825ff5b2c709, 0);
+SetOnStage(CHARACTERGUID_TRHU_Duke_Guard_A_016_dd474ede-d7fa-4edc-b4f3-29b52099b63a, 0);
+TriggerSetAtmosphere(TRIGGERGUID_DukeLevelATMTrigger_80df3fbf-84b0-4200-80b2-cc271dfa3ea1, "5e49a231-7234-44fd-a67b-67ab8294d431");
+
+IF 
+CharacterEnteredTrigger(_character, TRIGGERGUID_RedajEventTrigger_90e62b96-ee07-437a-8163-25a537a15c23)
+AND
+GlobalGetFlag("TRIGGEREDREDAJ", 0)
+AND
+CharacterIsPlayer(_character, 1)
+THEN
+//DB_RedajTalker(_character);
+TeleportTo(CHARACTERGUID_TRHU_Redaj_000_6ddd4362-bf3a-4a41-b31b-5101be41541c, TRIGGERGUID_DukeSecondLevelTeleportTrigger_41c46988-d741-42c5-a7a4-1cc8b00145ce);
+CharacterMoveToAndTalk(CHARACTERGUID_TRHU_Redaj_000_6ddd4362-bf3a-4a41-b31b-5101be41541c, _character, "RedajUpstairs", 0, "", 1, 30.0);
+GlobalSetFlag("TRIGGEREDREDAJ");
+
+IF
+GlobalFlagSet("WILLFIGHTREDAJ")
+THEN
+SetFaction(CHARACTERGUID_TRHU_Redaj_000_6ddd4362-bf3a-4a41-b31b-5101be41541c, "Evil NPC");
+
+
+IF
+GlobalFlagSet("WILLFOLLOWREDAJ")
+//AND
+//DB_RedajTalker(_character)
+THEN
+//TeleportTo(_character, TRIGGERGUID_DukeFirstLevelStairTeleportTrigger_db7d7d25-2ce2-421c-abc7-886801a5d5f2);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DukeFirstLevelStairTeleportTrigger_db7d7d25-2ce2-421c-abc7-886801a5d5f2, "");
+TeleportTo(CHARACTERGUID_TRHU_Redaj_000_6ddd4362-bf3a-4a41-b31b-5101be41541c, TRIGGERGUID_DukeFirstLevelStairTeleportTrigger_db7d7d25-2ce2-421c-abc7-886801a5d5f2);
+GlobalClearFlag("TRIGGEREDREDAJ");
+GlobalClearFlag("WILLFOLLOWREDAJ");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_RedajGreetEventTrigger_19fa2a3e-f58a-438f-b440-1d0c710f4cd5)
+AND
+GlobalGetFlag("REDAJHASGREETED", 0)
+THEN
+CharacterMoveToAndTalk(CHARACTERGUID_TRHU_Redaj_000_6ddd4362-bf3a-4a41-b31b-5101be41541c, _character, "RedajMeet", 0, "", 0, 20.0);
+GlobalSetFlag("REDAJHASGREETED");
+
+
+IF 
+CharacterEnteredTrigger(_character, TRIGGERGUID_FrontDoorGuardGreetPartyEventTrigger_7aa0e8ff-4375-4a22-8d02-47fd33f538a8)
+AND
+GlobalGetFlag("HASTRIGGEREDFRONTDOORPARTYGREET", 0)
+THEN
+DisplayText(CHARACTERGUID_DukeFrontDoorGuard_6bba28f4-5218-42a3-8d6e-1623185e0c49, "The party has started, please go on in!");
+GlobalSetFlag("HASTRIGGEREDFRONTDOORPARTYGREET");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DukesReflection"

@@ -1,0 +1,176 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Dialogs(29944730-dfe2-47ac-a68d-b1a244d57111, "TowerGuardHeartbeat");
+DB_Dialogs(29944730-dfe2-47ac-a68d-b1a244d57111, "TowerGuard");
+DB_PlayersFightingGuards();
+KBSECTION
+IF
+CharacterDied(CHARACTERGUID_TRHU_TowerGuard_Dwarves_Hero_Male_Undead_000_29944730-dfe2-47ac-a68d-b1a244d57111)
+THEN
+SetOnStage(ITEMGUID_TRHU_TowerDoor__000_e08ca1cc-8a6e-859e-3270-8111ef90456d, 1);
+SetFaction(CHARACTERGUID_Tower_Guard_Lizard_Skeleton_1642d9d0-a7cb-4e2a-b02f-55861b862577, "Evil NPC");
+
+
+//Auto Save when approach tower
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_TowerAutoSaveEventTrigger_e3c120ed-7f8b-46b2-8964-45b487686db8)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+CharacterIsInCombat(_character, 0)
+AND
+GlobalGetFlag("HASSAVED", 0)
+THEN
+//DisplayText(_character, "Saving...");
+GlobalSetFlag("HASSAVED");
+AutoSave();
+
+
+//TowerGuard Talks Trigger
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_GuardDialogEventTrigger_174041dc-f5ee-4dab-9043-f8f873203304)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+GlobalGetFlag("TRIGGEREDGUARDCONVO", 0)
+AND
+CharacterIsDead(CHARACTERGUID_TRHU_TowerGuard_Dwarves_Hero_Male_Undead_000_29944730-dfe2-47ac-a68d-b1a244d57111, 0)
+THEN
+//DisplayText(_character, "He's coming!");
+CharacterMoveToAndTalk(29944730-dfe2-47ac-a68d-b1a244d57111, _character, "TowerGuard", 1,"", 1, 5.0);
+GlobalSetFlag("TRIGGEREDGUARDCONVO");
+
+IF
+CharacterLeftTrigger(_character, TRIGGERGUID_GuardDialogEventTrigger_174041dc-f5ee-4dab-9043-f8f873203304)
+AND
+NOT DB_PlayersFightingGuards(_)
+THEN
+GlobalClearFlag("TRIGGEREDGUARDCONVO");
+
+IF
+GlobalFlagSet("FAILEDPASSWORD")
+THEN
+SetFaction(CHARACTERGUID_TRHU_TowerGuard_Dwarves_Hero_Male_Undead_000_29944730-dfe2-47ac-a68d-b1a244d57111, "Evil NPC");
+SetFaction(CHARACTERGUID_Tower_Guard_Lizard_Skeleton_1642d9d0-a7cb-4e2a-b02f-55861b862577, "Evil NPC");
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_009_994fe9f4-9244-4eb8-ac30-331f170fdc27, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_008_c42b0e07-9ce5-4a8e-b1f2-452c80f59e7e, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_007_c6708fd8-cb18-42d4-bf6d-de3c57722de5, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_006_54243311-449c-473e-bdbe-7029f099e828, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_005_4105984f-2d6c-488e-ae7c-537ceb9abed0, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_004_862a5c1a-4604-427b-a716-9a3fd68375af, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_003_50022974-26b8-496b-8942-aa6afc1f3120, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_002_7c7e6adb-50aa-402d-ac23-38302c7bb4d6, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_001_b4a4d249-42b6-45f9-a0cf-bb6210a44eca, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_000_43d1673a-b56d-41e7-b974-a844daa15d3a, 1);
+SetOnStage(ITEMGUID_TRHU_TowerDoor__000_e08ca1cc-8a6e-859e-3270-8111ef90456d, 0);
+GlobalClearFlag("FAILEDPASSWORD");
+//DisplayText(_character, "Uh oh...");
+
+IF
+GlobalFlagSet("SUCCESSPASSWORD")
+THEN
+SetFaction(CHARACTERGUID_TRHU_TowerGuard_Dwarves_Hero_Male_Undead_000_29944730-dfe2-47ac-a68d-b1a244d57111, "Good NPC");
+SetFaction(CHARACTERGUID_Tower_Guard_Lizard_Skeleton_1642d9d0-a7cb-4e2a-b02f-55861b862577, "Good NPC");
+SetOnStage(ITEMGUID_TRHU_TowerDoor__000_e08ca1cc-8a6e-859e-3270-8111ef90456d, 1);
+//DisplayText(_speaker, "You're so nice!");
+
+
+IF
+ItemUnlocked(ITEMGUID_TRHU_TowerDoor__000_e08ca1cc-8a6e-859e-3270-8111ef90456d, _character, _key)
+THEN
+PartyAddExperience(_character, 1, 1, 2);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_Level01TeleportTrigger_37a658aa-5f8b-4956-8b77-b95b24306de5, "Going in.");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_TowerGuardHeardHeartBeatEventTrigger_3a1821b7-6587-45fc-abda-cac800a14feb)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+CharacterIsDead(CHARACTERGUID_TRHU_TowerGuard_Dwarves_Hero_Male_Undead_000_29944730-dfe2-47ac-a68d-b1a244d57111, 0)
+AND
+GlobalGetFlag("SUCCESSPASSWORD", 1)
+THEN
+CharacterMoveToAndTalk(29944730-dfe2-47ac-a68d-b1a244d57111, _character, "TowerGuardHeartbeat", 1,"", 1, 5.0);
+//SetOnStage(ITEMGUID_TRHU_TowerDoor__000_e08ca1cc-8a6e-859e-3270-8111ef90456d, 1);
+
+IF
+GlobalFlagSet("GUARDHEARDHEARTBEAT")
+THEN
+SetFaction(CHARACTERGUID_TRHU_TowerGuard_Dwarves_Hero_Male_Undead_000_29944730-dfe2-47ac-a68d-b1a244d57111, "Evil NPC");
+SetFaction(CHARACTERGUID_Tower_Guard_Lizard_Skeleton_1642d9d0-a7cb-4e2a-b02f-55861b862577, "Evil NPC");
+SetOnStage(ITEMGUID_TRHU_TowerDoor__000_e08ca1cc-8a6e-859e-3270-8111ef90456d, 0);
+
+IF
+GlobalFlagSet("CALLTHEGUARDS")
+THEN
+//CharacterAppearAt(3768e7a3-ae43-40bd-8915-36b42bb2fedc, TRIGGERGUID_PointTrigger_000_0c1e8d82-d123-4afc-9baf-eda071e5489d, 1, "");
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_009_994fe9f4-9244-4eb8-ac30-331f170fdc27, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_008_c42b0e07-9ce5-4a8e-b1f2-452c80f59e7e, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_007_c6708fd8-cb18-42d4-bf6d-de3c57722de5, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_006_54243311-449c-473e-bdbe-7029f099e828, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_005_4105984f-2d6c-488e-ae7c-537ceb9abed0, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_004_862a5c1a-4604-427b-a716-9a3fd68375af, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_003_50022974-26b8-496b-8942-aa6afc1f3120, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_002_7c7e6adb-50aa-402d-ac23-38302c7bb4d6, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_001_b4a4d249-42b6-45f9-a0cf-bb6210a44eca, 1);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_000_43d1673a-b56d-41e7-b974-a844daa15d3a, 1);
+SetOnStage(ITEMGUID_TRHU_TowerDoor__000_e08ca1cc-8a6e-859e-3270-8111ef90456d, 0);
+SetFaction(CHARACTERGUID_TRHU_TowerGuard_Dwarves_Hero_Male_Undead_000_29944730-dfe2-47ac-a68d-b1a244d57111, "Evil NPC");
+SetFaction(CHARACTERGUID_Tower_Guard_Lizard_Skeleton_1642d9d0-a7cb-4e2a-b02f-55861b862577, "Evil NPC");
+GlobalClearFlag("CALLTHEGUARDS");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_GuardsVanishEventTrigger_fdc70373-f88d-4c20-a124-7d9dda369cad)
+AND
+CharacterIsPlayer(_character, 1)
+THEN
+DB_PlayersFightingGuards((GUIDSTRING)_character);
+//DisplayText(_character, "Added to DB");
+
+IF
+CharacterLeftTrigger(_character, TRIGGERGUID_GuardsVanishEventTrigger_fdc70373-f88d-4c20-a124-7d9dda369cad)
+AND
+CharacterIsPlayer(_character, 1)
+THEN
+NOT DB_PlayersFightingGuards((GUIDSTRING)_character);
+//DisplayText(_character, "Removed From DB");
+GlobalSetFlag("CHECKFORTOWERFIGHTERS");
+
+
+IF
+GlobalFlagSet("CHECKFORTOWERFIGHTERS")
+AND
+NOT DB_PlayersFightingGuards(_)
+THEN
+//ObjectSetFlag(_character, "CHARACTERLEFTTOWERZONE");
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_009_994fe9f4-9244-4eb8-ac30-331f170fdc27, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_008_c42b0e07-9ce5-4a8e-b1f2-452c80f59e7e, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_007_c6708fd8-cb18-42d4-bf6d-de3c57722de5, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_006_54243311-449c-473e-bdbe-7029f099e828, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_005_4105984f-2d6c-488e-ae7c-537ceb9abed0, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_004_862a5c1a-4604-427b-a716-9a3fd68375af, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_003_50022974-26b8-496b-8942-aa6afc1f3120, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_002_7c7e6adb-50aa-402d-ac23-38302c7bb4d6, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_001_b4a4d249-42b6-45f9-a0cf-bb6210a44eca, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_000_43d1673a-b56d-41e7-b974-a844daa15d3a, 0);
+SetFaction(CHARACTERGUID_TRHU_TowerGuard_Dwarves_Hero_Male_Undead_000_29944730-dfe2-47ac-a68d-b1a244d57111, "Neutral NPC");
+SetFaction(CHARACTERGUID_Tower_Guard_Lizard_Skeleton_1642d9d0-a7cb-4e2a-b02f-55861b862577, "Neutral NPC");
+CharacterMoveTo(CHARACTERGUID_Tower_Guard_Lizard_Skeleton_1642d9d0-a7cb-4e2a-b02f-55861b862577, TRIGGERGUID_PointTrigger_000_0c1e8d82-d123-4afc-9baf-eda071e5489d, 1, "", 1);
+//DisplayText(_character, "lefty");
+GlobalClearFlag("CHECKFORTOWERFIGHTERS");
+//DisplayText(CHARACTERGUID_Elves_Male_Armor_000_43cccc71-a7e9-4300-9f06-62d37cd960b7, "it was called!!!");
+
+
+IF
+GlobalFlagSet("CHECKFORTOWERFIGHTERS")
+AND
+DB_PlayersFightingGuards(_)
+THEN
+//SetOnStage(ITEMGUID_CountingPipe_7f6d93a0-4a7e-44a3-a445-a368dc1cd433, 1);
+//DisplayText(CHARACTERGUID_Elves_Male_Armor_000_43cccc71-a7e9-4300-9f06-62d37cd960b7, "someone is still fighting");
+GlobalClearFlag("CHECKFORTOWERFIGHTERS");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "TowerForest"

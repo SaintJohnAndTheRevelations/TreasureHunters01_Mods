@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["0XFrD"]); }
+
+__d("AdsLWIRecommendPromotionKeyRecord",["immutable"],(function(a,b,c,d,e,f){"use strict";var g;c=b("immutable").Record({page_id:undefined,objective:undefined});g=babelHelpers.inherits(a,c);g&&g.prototype;function a(){g.apply(this,arguments)}e.exports=a}),null);

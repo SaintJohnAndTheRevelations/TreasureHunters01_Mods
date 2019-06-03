@@ -1,0 +1,25 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_CheckLevelStart("PaymentFailed");
+
+DB_QuestDef_State("InvestigateDemonCamp", "Started", 1);
+DB_QuestDef_State("InvestigateDemonCamp", "Completed", 1);
+DB_QuestDef_State("InvestigateDemonCamp", "FoundLetter", 1);
+DB_QuestDef_State("StowAway", "Started", 1);
+DB_QuestDef_State("StowAway", "Completed", 1);
+KBSECTION
+IF
+RegionStarted("PaymentFailed")
+THEN
+GoalCompleted;
+
+IF DB_CheckLevelStart("PaymentFailed")
+AND
+DB_CurrentLevel("PaymentFailed")
+THEN
+GoalCompleted;
+EXITSECTION
+NOT DB_CheckLevelStart("PaymentFailed");
+ENDEXITSECTION
+ParentTargetEdge "__Start"

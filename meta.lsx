@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" />
+    <version major="3" minor="6" revision="3" build="1" />
+    <region id="Config">
+        <node id="root">
+            <children>
+                <node id="Dependencies" />
+                <node id="ModuleInfo">
+                    <attribute id="Author" value="Saint John and the Revelations" type="30" />
+                    <attribute id="CharacterCreationLevelName" value="SYS_Character_Creation_A" type="22" />
+                    <attribute id="Description" value="You arrived to the Tower Forest in search of the legendary treasure within the Tower Vault. Many treasure hunters and adventurers have tried before and died and now haunt the forest, their corpses have been turned in to undead guardians of the Tower. You hear screaming ahead. Good Luck! Game Notes: You start the game with Lone Wolf and Loremaster. LOTS: battles, treasure, experience LESS: shopping, crafting, dialogs. It&apos;s a good idea to have thieving skills in your party. Many thanks to Larian for giving amateurs like me the tools to play with. If you like the module or have a comment to make, please visit my music page: https://www.sjatr.com IG: @instasaintjohn" type="30" />
+                    <attribute id="Folder" value="TreasureHunters2_ecdf542a-c219-eace-735d-a5802e26a862" type="30" />
+                    <attribute id="GMTemplate" value="" type="22" />
+                    <attribute id="LobbyLevelName" value="" type="22" />
+                    <attribute id="MD5" value="" type="23" />
+                    <attribute id="MenuLevelName" value="TowerForest" type="22" />
+                    <attribute id="Name" value="Treasure Hunters!" type="22" />
+                    <attribute id="NumPlayers" value="4" type="1" />
+                    <attribute id="PhotoBooth" value="" type="22" />
+                    <attribute id="StartupLevelName" value="" type="22" />
+                    <attribute id="Tags" value="" type="30" />
+                    <attribute id="Type" value="Adventure" type="22" />
+                    <attribute id="UUID" value="ecdf542a-c219-eace-735d-a5802e26a862" type="22" />
+                    <attribute id="Version" value="268632091" type="4" />
+                    <children>
+                        <node id="PublishVersion">
+                            <attribute id="Version" value="908338577" type="4" />
+                        </node>
+                        <node id="Scripts" />
+                        <node id="TargetModes">
+                            <children>
+                                <node id="Target">
+                                    <attribute id="Object" value="Story" type="22" />
+                                </node>
+                            </children>
+                        </node>
+                    </children>
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

@@ -1,0 +1,20 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_CheckLevelStart("FreedomLevel");
+
+KBSECTION
+IF
+RegionStarted("FreedomLevel")
+THEN
+GoalCompleted;
+
+IF DB_CheckLevelStart("FreedomLevel")
+AND
+DB_CurrentLevel("FreedomLevel")
+THEN
+GoalCompleted;
+EXITSECTION
+NOT DB_CheckLevelStart("FreedomLevel");
+ENDEXITSECTION
+ParentTargetEdge "__Start"

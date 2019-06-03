@@ -1,0 +1,89 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Dialogs("DemonNightsingerMeet");
+SetOnStage(CHARACTERGUID_DukeLandingTreasureHunter_000_5ae149b8-7c34-4fc8-ab3d-accf5c6ca0f5, 0);
+SetOnStage(CHARACTERGUID_DemonStairsMage_38b179b4-6e74-4790-8e89-99e3f1dde94d, 0);
+SetOnStage(CHARACTERGUID_DemonWarriorStairs_c3d4a644-87fc-480f-94de-a1ce7aab565c, 0);
+CharacterSetCanTrade(CHARACTERGUID_DukeLandingTreasureHunter_000_5ae149b8-7c34-4fc8-ab3d-accf5c6ca0f5, 0);
+KBSECTION
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_FirstDemonStairEventTrigger_4aaa3660-a4f6-459c-b7b4-53506a349bf3)
+AND
+GlobalGetFlag("MIRRORBROKE", 1)
+AND
+GlobalGetFlag("TRIGGEREDFIRSTSTAIRDEMONS", 0)
+THEN
+SetOnStage(CHARACTERGUID_DemonStairsMage_38b179b4-6e74-4790-8e89-99e3f1dde94d, 1);
+SetOnStage(CHARACTERGUID_DemonWarriorStairs_c3d4a644-87fc-480f-94de-a1ce7aab565c, 1);
+GlobalSetFlag("TRIGGEREDFIRSTSTAIRDEMONS");
+
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_DemonTreasureHunterEventTrigger_697c0d49-dcef-4269-a5b4-fe9a24767435)
+AND
+GlobalGetFlag("MIRRORBROKE", 1)
+AND
+GlobalGetFlag("TRIGGEREDDEMONTREASUREHUNTER", 0)
+THEN
+SetOnStage(CHARACTERGUID_DukeLandingTreasureHunter_000_5ae149b8-7c34-4fc8-ab3d-accf5c6ca0f5, 1);
+CharacterAppearAt(CHARACTERGUID_DukeLandingTreasureHunter_000_5ae149b8-7c34-4fc8-ab3d-accf5c6ca0f5, TRIGGERGUID_DemonTreasureHunterAppearPointTrigger_99e9e5f7-48bb-457a-881d-825c037c62c3, 1, "");
+CharacterMoveToAndTalk(CHARACTERGUID_DukeLandingTreasureHunter_000_5ae149b8-7c34-4fc8-ab3d-accf5c6ca0f5, _character, "DemonNightsingerMeet", 0, "", 1, 20.0);
+//CharacterMoveTo(CHARACTERGUID_DemonTreasureHunter_4377b394-30df-4538-8dd3-c1fb422cf2fc, _character, 1, "", 1);
+DisplayText(CHARACTERGUID_DukeLandingTreasureHunter_000_5ae149b8-7c34-4fc8-ab3d-accf5c6ca0f5, "You will not take the mirror!");
+GlobalSetFlag("TRIGGEREDDEMONTREASUREHUNTER");
+
+IF
+GlobalFlagSet("DUKEDEMONFIGHTSTART")
+THEN
+SetFaction(CHARACTERGUID_DukeLandingTreasureHunter_000_5ae149b8-7c34-4fc8-ab3d-accf5c6ca0f5, "Evil NPC");
+
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_LeavingEstateWikGuardsCollectPartyEventTrigger_58863010-61d5-4e4c-81f7-b7428bfcad42)
+AND
+GlobalGetFlag("HAVEBEENCOLLECTEDFROMDUKELEVEL", 0)
+AND
+GlobalGetFlag("MIRRORBROKE", 1)
+THEN
+SetFaction(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, "Neutral NPC");
+SetOnStage(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, 1);
+CharacterAppearAt(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, TRIGGERGUID_WikGuardAppearToCollectPartyDukeLeaveDukeLevelTeleportTrigger_d9628d35-3df1-4279-86f5-03465e7acde0, 0, "");
+CharacterMoveToAndTalk(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, _character, "WikGuardCollectFromDukeLevel", 0, "", 1, 20.0);
+GlobalSetFlag("HAVEBEENCOLLECTEDFROMDUKELEVEL");
+DisplayText(_character, "It's time to get out of here...");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_LeavingStairGuardsAttackEventTrigger_eadc51f9-3795-48a7-8072-8e6e2be43d45)
+AND
+GlobalGetFlag("MIRRORBROKE", 1)
+AND
+GlobalGetFlag("TRIGGEREDSTAIRGUARDSLEAVING", 0)
+THEN
+CharacterMoveTo(CHARACTERGUID_StairOneDukeGuard_fc9d4d03-2062-4ddd-850a-625b7f882426, _character, 1, "", 1);
+CharacterMoveTo(CHARACTERGUID_StairOneTalkingGuard_db2d50c7-5e70-4b10-b6cb-23e5acd419ad, _character, 1, "", 1);
+GlobalSetFlag("TRIGGEREDSTAIRGUARDSLEAVING");
+
+
+IF
+GlobalFlagSet("LEAVEDUKEESTATE")
+THEN
+GlobalClearFlag("RECEIVEDDUKEMISSION");
+TimerLaunch("TeleportFromDukeToWikCell", 3000);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DukeLevelDarkRoomTeleportTrigger_194d2354-7110-47f1-8ef1-fb43de6260aa, "");
+TeleportTo(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, TRIGGERGUID_WikGuardReturnFromDukeTeleportTrigger_853119bf-414a-4684-a50c-152acc245d83);
+SetFaction(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, "Neutral NPC");
+SetFaction(CHARACTERGUID_TRHU_Wik_002_58a994b8-7447-41a4-b631-1e23f07a001f, "Neutral NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_004_68a0610c-4438-4ffe-ab2f-bd09f5ac613a, "Neutral NPC");
+
+IF
+TimerFinished("TeleportFromDukeToWikCell")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_WikCellDukeLevelTeleportTrigger_fb27f155-5274-43f1-ac81-434caad12e26, "");
+SetFaction(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, "Neutral NPC");
+SetFaction(CHARACTERGUID_TRHU_Wik_002_58a994b8-7447-41a4-b631-1e23f07a001f, "Neutral NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_004_68a0610c-4438-4ffe-ab2f-bd09f5ac613a, "Neutral NPC");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DukesReflection"

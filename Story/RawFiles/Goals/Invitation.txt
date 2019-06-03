@@ -1,0 +1,46 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Bandits(CHARACTERGUID_Dwarves_Male_Clothing_Bandit_A_000_ff1929f7-47a1-4559-910b-a34953703230);
+DB_Bandits(CHARACTERGUID_Humans_Male_Armor_Bandit_A_000_ee51b86b-8676-4930-817c-0e3dbda076ba);
+DB_Bandits(CHARACTERGUID_Humans_Male_Bandit_000_7c9daee8-7ede-4835-9fd3-4fce219413ae);
+KBSECTION
+IF
+CharacterDied(_character)
+AND
+CharacterIsPlayer(_character, 0)
+THEN
+NOT DB_Bandits((GUIDSTRING)_character);
+
+//Trofanam
+IF
+GlobalFlagSet("FIGHTTROFANAM")
+THEN
+SetFaction(CHARACTERGUID_Trofanam_9aaf60a1-efa0-49e5-a532-13903b9f6dc6, "Evil NPC");IF
+
+
+CharacterDied(_character)
+AND
+CharacterIsPlayer(_character, 0)
+AND
+NOT DB_Bandits(_)
+THEN
+GlobalSetFlag("ALLBANDITSDEAD");
+CharacterMoveTo(CHARACTERGUID_Trofanam_9aaf60a1-efa0-49e5-a532-13903b9f6dc6, TRIGGERGUID_TrofanamReturnPointTrigger_03dd7fe4-3b99-42d2-ae28-62bc9cd51311, 1, "", 1);
+//SetOnStage(CHARACTERGUID_FerdinandTheBull_d94ccaaa-af39-40c2-b8b9-47adb47bf72b, 0);
+SetTag(CHARACTERGUID_Trofanam_9aaf60a1-efa0-49e5-a532-13903b9f6dc6, "BADASSCIVILIAN");
+
+
+IF
+ItemAddedToCharacter(ITEMGUID_DukeInvitation_4c05b80b-44c8-4662-b4df-9c231431fc78, _character)
+AND
+GlobalGetFlag("GOTEXPINVITATION", 0)
+THEN
+ObjectSetFlag(_character, "QuestUpdate_GetInvitation_Completed");
+GlobalSetFlag("HASINVITATION");
+PartyAddExperience(_character, 1, 1, 75);
+GlobalSetFlag("GOTEXPINVITATION");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DukesReflection"

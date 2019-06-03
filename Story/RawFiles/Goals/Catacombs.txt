@@ -1,0 +1,104 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+TimerFinished("UsedCatacombStairs")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_Level01TeleportTrigger_37a658aa-5f8b-4956-8b77-b95b24306de5, "");
+SetFaction(CHARACTERGUID_TRHU_Wik_000_45ecd622-4097-4777-ae00-35d267f7c953, "Neutral NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_001_2096772f-102b-4eae-b639-70c4fcc49892, "Neutral NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_002_b52118d7-48d8-47aa-b816-d59d02308d12, "Neutral NPC");
+
+IF
+ItemAddedToCharacter(ITEMGUID_ShirtOfPoisonProtection_000_842570d4-1f47-4d23-adc0-97e9d4abd503, _character)
+THEN
+GlobalSetFlag("HASPURITYSHIRT");
+DisplayText(_character, "It looks like I found what that psychopath was looking for, maybe now she'll set me free.");
+
+
+IF
+CharacterUsedItem(_character, ITEMGUID_JestavCondolenceBook_0a1fbde7-c1c7-49a5-8642-e00d447c0f47)
+AND
+GlobalGetFlag("READCONDOLENCES", 0)
+THEN
+DisplayText(_character, "I'm not crying, you're crying!");
+GlobalSetFlag("READCONDOLENCES");
+
+IF
+CharacterUsedItem(_character, ITEMGUID_StairsOutOfCatacombs_2b053c65-1ad6-4933-a08f-ae1cd265d545)
+THEN
+SetFaction(CHARACTERGUID_TRHU_Wik_000_45ecd622-4097-4777-ae00-35d267f7c953, "Neutral NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_001_2096772f-102b-4eae-b639-70c4fcc49892, "Neutral NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_002_b52118d7-48d8-47aa-b816-d59d02308d12, "Neutral NPC");
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DarkSpotLevel01TeleportTrigger_5bca8229-c13b-46cd-8eb5-69bdf1a34ba5, "");
+TimerLaunch("UsedCatacombStairs", 5000);
+
+
+IF
+CharacterLeftTrigger(_character, TRIGGERGUID_FunkOfFortyThousandYearsTextEventTrigger_5ab408a4-7b67-4b03-9fbf-55cb87824602)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+GlobalGetFlag("CATACOMBSARRIVED", 0)
+THEN
+DisplayText(_character, "This place smells like the funk of forty thousand years...");
+GlobalSetFlag("CATACOMBSARRIVED");
+
+IF 
+CharacterEnteredTrigger(_character, TRIGGERGUID_ItsDarkThisWayEventTrigger1_a5350f2a-40de-4ce7-91c4-9cb40912ee87)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+GlobalGetFlag("SAIDITSDARK", 0)
+THEN
+DisplayText(_character, "Why is it so dark down this way? And cold...");
+GlobalSetFlag("SAIDITSDARK");
+
+IF 
+CharacterEnteredTrigger(_character, TRIGGERGUID_ItsDarkThisWayEventTrigger2_c58d2ad5-f3c3-496d-b696-97ec83e5a290)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+GlobalGetFlag("SAIDITSDARK", 0)
+THEN
+DisplayText(_character, "Why is it so dark down this way? And cold...");
+GlobalSetFlag("SAIDITSDARK");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_InnerCatacombStartEventTrigger_8f160e4e-8982-4b0f-92b2-cae750b4087d)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+GlobalGetFlag("ENTEREDINNERCATACOMB", 0)
+THEN
+CharacterAttack(CHARACTERGUID_InnerCatacombDemon_8c07d7f4-dfde-4604-a3d5-77890d9e84f2, ITEMGUID_UrnToBreak_c2f5feb5-7e5f-4fe9-86d2-e92262fe8516);
+CharacterAttack(CHARACTERGUID_InnerCatacombDemon_8c07d7f4-dfde-4604-a3d5-77890d9e84f2, ITEMGUID_UrnToBreak_c2f5feb5-7e5f-4fe9-86d2-e92262fe8516);
+//DisplayText(CHARACTERGUID_InnerCatacombDemon_8c07d7f4-dfde-4604-a3d5-77890d9e84f2, "The amulet isn't here");
+GlobalSetFlag("ENTEREDINNERCATACOMB");
+
+
+IF
+ItemDestroyed(ITEMGUID_UrnToBreak_c2f5feb5-7e5f-4fe9-86d2-e92262fe8516)
+AND
+GlobalGetFlag("TRIGGEREDDEMON", 0)
+THEN
+//DisplayText(CHARACTERGUID_InnerCatacombDemon_8c07d7f4-dfde-4604-a3d5-77890d9e84f2, "Somebody stole it.");
+GlobalSetFlag("TRIGGEREDDEMON");
+
+IF 
+CharacterLeftTrigger(_character, TRIGGERGUID_InnerCatacombStartEventTrigger_8f160e4e-8982-4b0f-92b2-cae750b4087d)
+THEN
+CharacterMoveToAndTalk(CHARACTERGUID_InnerCatacombDemon_8c07d7f4-dfde-4604-a3d5-77890d9e84f2, _character, "innercatacombdemon", 0, "", 1, 5.0);
+
+
+IF
+GlobalFlagSet("DEMONATTACKS")
+THEN
+SetFaction(CHARACTERGUID_InnerCatacombDemon_8c07d7f4-dfde-4604-a3d5-77890d9e84f2, "Evil NPC");
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "Level01"

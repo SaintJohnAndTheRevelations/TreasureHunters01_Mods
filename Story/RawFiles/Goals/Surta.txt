@@ -1,0 +1,31 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterLeftTrigger(_character, TRIGGERGUID_StartEventTrigger_5b127c5f-4680-49bb-b172-0897d1af3c1f)
+AND
+NOT CharacterIsDead(CHARACTERGUID_Surta_915962bf-9147-4790-8897-fc26889c9c94, 1)
+THEN
+DisplayText(CHARACTERGUID_Surta_915962bf-9147-4790-8897-fc26889c9c94, "...help...heeelllp..");
+
+IF ObjectFlagSet("QuestUpdate_FindTowerKey_Started", _speaker, _)
+THEN
+CharacterDie(CHARACTERGUID_Surta_915962bf-9147-4790-8897-fc26889c9c94, 1, "Physical");
+
+IF
+CharacterDied(CHARACTERGUID_TRHU_Creatures_Undead_ZombieCrawler_A_005_TriggersCornerEnemies_953b4c4c-cda9-44d8-acd4-0e0c986c1a29)
+THEN
+TimerLaunch("KilledCampZombie", 6000);
+
+IF
+TimerFinished("KilledCampZombie")
+THEN
+CharacterMoveTo(CHARACTERGUID_ZombieTreasureHunterMovesToCamp_cfeae101-2141-49f5-a378-e064d09007f0, TRIGGERGUID_ZombieRallyAtCampPointTrigger_632a6847-030d-4f10-abd2-8125e8b68c77, 1, "", 1);
+CharacterMoveTo(CHARACTERGUID_TRHU_Creatures_Undead_ZombieCrawler_A_006MovesToCamp_dab8d949-9c27-4380-9677-a0a7b81e1d1a, TRIGGERGUID_ZombieRallyAtCampPointTrigger_632a6847-030d-4f10-abd2-8125e8b68c77, 0, "", 0);
+CharacterMoveTo(CHARACTERGUID_TRHU_Creatures_Undead_ZombieCrawler_B_000MovesToCamp_31146287-e7e0-4cc7-a32e-caa57f832fec, TRIGGERGUID_ZombieRallyAtCampPointTrigger_632a6847-030d-4f10-abd2-8125e8b68c77, 0, "", 0);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "TowerForest"

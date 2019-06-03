@@ -1,0 +1,14 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Dialogs("DruidMeet");
+KBSECTION
+IF
+ObjectFlagSet("HASMETDRUID", _character, _)
+THEN
+ItemTemplateAddTo("Scroll_Skill_Earth_Fortify_ec3bd6c2-12b8-4a47-8584-d71b3332a295", _character, 2, 1);
+GlobalSetFlag("GOTDRUIDPRESENT");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "TowerForest"

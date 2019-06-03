@@ -1,0 +1,28 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//Equip Tower Ring
+IF
+ItemEquipped(ITEMGUID_Tower_Vault_Ring_cacbb655-72ce-4565-9efe-b34d964c3c9b, _character)
+THEN
+//CharacterAddSkill(_character, "Shout_SpiritVision");
+//CharacterUseSkill(_character, "Shout_SpiritVision", _character, 0, 1, 1); 	
+DisplayText(_character, "This ring makes me feel kind of weird...");
+//ProcFaceCharacter(CHARACTERGUID_Corruption_Tree_01be5f48-62ab-4c86-8711-4e4951ab5066, _character);
+ObjectSetFlag(_character, "HASTOWERRING");
+
+IF
+ItemUnEquipped(ITEMGUID_Tower_Vault_Ring_cacbb655-72ce-4565-9efe-b34d964c3c9b, _character)
+THEN
+//CharacterRemoveSkill(_character, "Shout_SpiritVision");
+ObjectClearFlag(_character,"HASTOWERRING");
+//DisplayText(_character, "I'm not tagged anymore");
+
+
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

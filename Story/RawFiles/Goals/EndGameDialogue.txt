@@ -1,0 +1,24 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Dialogs("NarratorGameEnds");
+KBSECTION
+IF
+TimerFinished("StartEndDialogue")
+AND
+DB_IsPlayer(_character)
+THEN
+Proc_StartDialog(0, "NarratorGameEnds", _character, NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+CharacterUsedItem(_character, _item)
+AND
+GlobalGetFlag("EPILOGUE", 1)
+THEN
+Proc_StartDialog(0, "NarratorGameEnds", _character, NULL_00000000-0000-0000-0000-000000000000);
+
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DukeLevel"

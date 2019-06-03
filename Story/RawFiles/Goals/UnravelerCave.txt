@@ -1,0 +1,102 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Dialogs("NarratorForgottenCave");
+DB_Dialogs("StartWikReturnFromMountainDialogue");
+DB_Dialogs("WikMountainQuest");
+KBSECTION
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_ForgottenCavePassphraseTrigger_6ccd367f-9fb3-4b9f-85e8-91216f41278b)
+AND
+GlobalGetFlag("SAIDCAVEPASSPHRASE", 0)
+THEN
+Proc_StartDialog(0, "NarratorForgottenCave", _character, NULL_00000000-0000-0000-0000-000000000000);
+//DisplayText(_character, "I should say the passphrase");
+SetOnStage(ITEMGUID_UnravelerAltar_e2671d2f-eb2f-4492-a876-dd05a727f08b, 1);
+PlayEffect(ITEMGUID_UnravelerAltar_e2671d2f-eb2f-4492-a876-dd05a727f08b, "RS3_FX_GP_Status_Item_HolyFire_01"); 
+
+IF
+GlobalFlagSet("SAIDCAVEPASSPHRASE")
+THEN
+PlayEffect(ITEMGUID_UnravelerAltar_e2671d2f-eb2f-4492-a876-dd05a727f08b, "RS3_FX_GP_Status_Item_HolyFire_01");
+TimerLaunch("ShowAltar", 2000);
+
+IF
+TimerFinished("ShowAltar")
+THEN
+SetOnStage(ITEMGUID_UnravelerAltar_e2671d2f-eb2f-4492-a876-dd05a727f08b, 1);
+
+
+IF
+ItemEnteredTrigger(ITEMGUID_TRHU_Fake_Unraveler_7bb66cdd-e4c1-4e18-89cb-108688f579a0, TRIGGERGUID_AltarEventTrigger_e8812b9f-5bb4-4b23-bb26-1148ff8780ff, _character)
+THEN
+//DisplayText(_character, "We Did It!!!");
+GlobalSetFlag("PLACEDFAKEUNRAVELER");
+GlobalSetFlag("REPLACEDUNRAVELER");
+TimerLaunch("ReVanishAltar", 4000);
+QuestUpdate(_character, "ReplaceUnraveler", "UnravelerReplaced");
+DisplayText(_character, "Ok, I think that's it.");
+PlayEffect(ITEMGUID_TRHU_Fake_Unraveler_004_7bb66cdd-e4c1-4e18-89cb-108688f579a0, "RS3_FX_GP_Status_Item_HolyFire_01"); 
+PlayEffect(ITEMGUID_UnravelerAltar_e2671d2f-eb2f-4492-a876-dd05a727f08b, "RS3_FX_GP_Status_Item_HolyFire_01");
+
+/*
+IF
+TimerFinished("ZapDagger")
+//AND
+//GetPosition(ITEMGUID_UnravelerAltar_e2671d2f-eb2f-4492-a876-dd05a727f08b, _x, _y, _z)
+THEN
+PlayEffect(ITEMGUID_TRHU_Fake_Unraveler_004_7bb66cdd-e4c1-4e18-89cb-108688f579a0, "RS3_FX_GP_Status_Item_Blessed_01"); 
+//PlayEffectAtPosition(
+PlayEffect(ITEMGUID_UnravelerAltar_e2671d2f-eb2f-4492-a876-dd05a727f08b, "RS3_FX_GP_Status_Item_Blessed_01"); 
+TimerLaunch("ReVanishAltar", 2000);
+*/
+
+IF
+TimerFinished("ReVanishAltar")
+THEN
+SetOnStage(ITEMGUID_UnravelerAltar_e2671d2f-eb2f-4492-a876-dd05a727f08b, 0);
+SetOnStage(ITEMGUID_TRHU_Fake_Unraveler_7bb66cdd-e4c1-4e18-89cb-108688f579a0, 0);
+
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_LeavingMountainEventTrigger_34870b0e-0317-4509-810f-b25d8faa15c3)
+AND
+GlobalGetFlag("PLACEDFAKEUNRAVELER", 1)
+THEN
+TimerLaunch("WaitForFadeOut", 4000);
+TriggerSetAtmosphere(TRIGGERGUID_MountainATMTrigger_b7b9cbe7-dc55-4dcf-8065-527317761512, "b5ecd83c-f936-41cd-a0ae-5049c1041bea");
+
+IF
+TimerFinished("WaitForFadeOut")
+THEN
+GlobalSetFlag("LEAVINGUNRAVELERCAVE");
+
+
+IF
+CharacterUsedItem(_character, ITEMGUID_UnravlerCaveLadder_e679f9ad-fb87-4307-9d69-7ca47db32ae4)
+THEN
+TeleportTo(_character, TRIGGERGUID_MountainCaveEntranceTeleportTrigger_f60e3201-5a6b-4cb1-a13d-9b7dcb7a1483);
+
+
+IF
+GlobalFlagSet("LEAVINGUNRAVELERCAVE")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DarkRoomTeleportTrigger_53c1ccfa-b2f0-4296-ad05-446c0134d277, "");
+TimerLaunch("LeavingUnravelerCave", 4000);
+
+IF
+TimerFinished("LeavingUnravelerCave")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_ReturnToWikLabTeleportTrigger_12279438-e18c-4f9c-b836-5527a5a81e11, "");
+TimerLaunch("StartWikReturnFromMountainDialogue", 3000);
+
+IF
+TimerFinished("StartWikReturnFromMountainDialogue")
+AND
+DB_IsPlayer(_character)
+THEN
+CharacterMoveToAndTalk(CHARACTERGUID_TRHU_Wik_003_70de9067-5b39-4212-8db6-36fbdac19eb3, _character, "WikMountainQuest", 0, "", 0, 20.0);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "ManyHappyReturns"

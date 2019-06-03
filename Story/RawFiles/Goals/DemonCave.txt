@@ -1,0 +1,42 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+ItemAddedToCharacter(ITEMGUID_PruttonLetter_9d7c0866-678a-4b11-81e9-814847bf2d9e, _character)
+AND
+GlobalGetFlag("KNOWSMIRROR", 0)
+THEN
+ObjectSetFlag(_character, "QuestUpdate_InvestigateDemonCamp_FoundLetter");
+PartyAddExperience(_character, 1, 1, 100);
+GlobalSetFlag("KNOWSMIRROR");
+
+IF
+CharacterUsedItem(_character, ITEMGUID_PruttonLetter_9d7c0866-678a-4b11-81e9-814847bf2d9e)
+AND
+GlobalGetFlag("KNOWSMIRROR", 0)
+THEN
+ObjectSetFlag(_character, "QuestUpdate_InvestigateDemonCamp_FoundLetter");
+PartyAddExperience(_character, 1, 1, 100);
+GlobalSetFlag("KNOWSMIRROR");
+
+IF
+ObjectFlagSet("QuestUpdate_InvestigateDemonCave_Completed", _character, _)
+THEN
+PartyAddExperience((CHARACTERGUID)_character, 1, 1, 125);
+
+IF
+CharacterUsedItem(_character, ITEMGUID_DemonCaveExit_b05c7845-1c63-4035-8e6b-83fc5ff6a6ec)
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_CrateDarkRoomTeleportTrigger_4170c4dc-b4a2-46a1-94c0-4efc96dbdea0, "");
+TimerLaunch("FinishedDemonCave", 5000);
+
+IF
+TimerFinished("FinishedDemonCave")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_CellFromSwampTeleportTrigger_87d9f648-e13b-4f1e-a4a2-cbc4f1d69c80, "");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "PaymentFailed"

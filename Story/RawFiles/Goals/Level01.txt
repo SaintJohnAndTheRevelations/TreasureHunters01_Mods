@@ -1,0 +1,23 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_CheckLevelStart("Level01");
+
+DB_QuestDef_State("JestavShirt", "Started", 1);
+DB_QuestDef_State("JestavShirt", "Completed", 1);
+DB_QuestDef_State("JestavShirt", "FoundShirt", 1);
+KBSECTION
+IF
+RegionStarted("Level01")
+THEN
+GoalCompleted;
+
+IF DB_CheckLevelStart("Level01")
+AND
+DB_CurrentLevel("Level01")
+THEN
+GoalCompleted;
+EXITSECTION
+NOT DB_CheckLevelStart("Level01");
+ENDEXITSECTION
+ParentTargetEdge "__Start"

@@ -1,0 +1,146 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Dialogs("NarratorOpener");
+DB_PlayersFightingGuards();
+KBSECTION
+IF
+ItemAddedToCharacter(ITEMGUID_Tower_Key_bb04ed33-f14b-4cd5-93f8-c0165a406612, _character)
+AND
+GlobalGetFlag("GOTEXPTOWERKEY", 0)
+THEN
+DisplayText(_character, "I've got the Tower Key, this will be easy!");
+ObjectSetFlag(_character, "QuestUpdate_FindTowerKey_Completed");
+PartyAddExperience(_character, 1, 1, 5);
+GlobalSetFlag("GOTEXPTOWERKEY");
+ObjectSetFlag(ITEMGUID_Tower_Key_bb04ed33-f14b-4cd5-93f8-c0165a406612, "ISKEY");
+//CharacterGiveQuestReward(_character, "MetDruid", "Completed");
+//CharacterGiveQuestReward(_character, "FindTowerKey", "Completed");
+
+
+IF 
+ItemAddedToCharacter(ITEMGUID_Adventurer_Journal_Start_c19d74af-0c60-c7fb-d930-2d59a8f549f2, _character)
+AND
+GlobalGetFlag("GOTADVENTURERJOURNAL", 0)
+THEN
+DisplayText(_character, "They won't be needing this anymore.");
+GlobalSetFlag("GOTADVENTURERJOURNAL");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_ElfBossTextEventTrigger_64af16d3-0197-4f13-9f62-3db598110e81)
+AND
+CharacterIsDead(CHARACTERGUID_Elf_Female_Mini_Boss_b0320773-a9ad-4d31-b075-8f284168db28, 0)
+THEN
+DisplayText(CHARACTERGUID_Elf_Female_Mini_Boss_b0320773-a9ad-4d31-b075-8f284168db28, "You will die to protect the tower forever!");
+
+IF
+CombatStarted(_combat)
+AND
+CharacterIsInCombat(CHARACTERGUID_Undead_Elf_Cleric_WithPassphrase_3db1f237-ec6a-4c3b-8551-1521cb7e5c57, 1)
+THEN
+DisplayText(CHARACTERGUID_Zombie_Carries_Passphrase_cfeae101-2141-49f5-a378-e064d09007f0, "...the passphrase...nnnggggh!!!");
+
+
+IF 
+ItemAddedToCharacter(ITEMGUID_TowerPassphrasePaper_6415e449-15d9-473d-a654-d623e45f2d21, _character)
+AND
+GlobalGetFlag("GOTEXPPASSPHRASE", 0)
+THEN
+DisplayText(_character, "This letter might have a clue...");
+GlobalSetFlag("KNOWSPASSPHRASE");
+ObjectSetFlag(_character, "QuestUpdate_LearnPassphrase_Completed");
+PartyAddExperience(_character, 1, 1, 10);
+GlobalSetFlag("GOTEXPPASSPHRASE");
+
+IF
+CharacterUsedItem(_character, ITEMGUID_TowerPassphrasePaper_6415e449-15d9-473d-a654-d623e45f2d21)
+AND
+GlobalGetFlag("GOTEXPPASSPHRASE", 0)
+THEN
+DisplayText(_character, "This letter might have a clue...");
+GlobalSetFlag("KNOWSPASSPHRASE");
+ObjectSetFlag(_character, "QuestUpdate_LearnPassphrase_Completed");
+PartyAddExperience(_character, 1, 1, 10);
+GlobalSetFlag("GOTEXPPASSPHRASE");
+
+
+IF
+ItemAddedToCharacter(ITEMGUID_Tower_Vault_Ring_cacbb655-72ce-4565-9efe-b34d964c3c9b, _character)
+AND
+GlobalGetFlag("GOTEXPTOWERRING", 0)
+THEN
+DisplayText(_character, "The guards should let me pass if I'm wearing this.");
+ObjectSetFlag(_character, "QuestUpdate_FindTowerRing_Completed");
+PartyAddExperience(_character, 1, 1, 15);
+GlobalSetFlag("GOTEXPTOWERRING");
+
+
+IF
+CharacterLeftTrigger(_character, TRIGGERGUID_StartEventTrigger_5b127c5f-4680-49bb-b172-0897d1af3c1f)
+AND
+GlobalGetFlag("LEFTSTARTTRIGGER", 0)
+THEN
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_009_994fe9f4-9244-4eb8-ac30-331f170fdc27, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_008_c42b0e07-9ce5-4a8e-b1f2-452c80f59e7e, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_007_c6708fd8-cb18-42d4-bf6d-de3c57722de5, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_006_54243311-449c-473e-bdbe-7029f099e828, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_005_4105984f-2d6c-488e-ae7c-537ceb9abed0, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_004_862a5c1a-4604-427b-a716-9a3fd68375af, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_003_50022974-26b8-496b-8942-aa6afc1f3120, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_002_7c7e6adb-50aa-402d-ac23-38302c7bb4d6, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_001_b4a4d249-42b6-45f9-a0cf-bb6210a44eca, 0);
+SetOnStage(CHARACTERGUID_TRHU_Humans_Male_Skeleton_BasicKnight_000_43d1673a-b56d-41e7-b974-a844daa15d3a, 0);
+SetOnStage(CHARACTERGUID_Animals_Deer_A_Ghost_000_f6bd3869-3a40-499a-afcb-77beb515e012, 0);
+SetOnStage(ITEMGUID_Starter_Chest_2f60a118-97ba-4524-923a-ddb6ebf2a392, 0);
+SetOnStage(ITEMGUID_TeleportToSpidernestPipe_077c5bb2-e20a-4fa3-9919-5f7c9f41c890, 0);
+SetOnStage(ITEMGUID_TeleportToTowerPipe_8c675ecf-d662-4c51-a6e5-5a1872f60e25, 0);
+SetOnStage(ITEMGUID_TeleportToLevel01Pipe_b5c69245-a310-4786-a410-354ef6111caf, 0);
+SetFaction(CHARACTERGUID_Tower_Guard_Lizard_Skeleton_1642d9d0-a7cb-4e2a-b02f-55861b862577, "Neutral NPC");
+SetFaction(CHARACTERGUID_TRHU_TowerGuard_Dwarves_Hero_Male_Undead_000_29944730-dfe2-47ac-a68d-b1a244d57111, "Neutral NPC");
+Proc_StartDialog(0, "NarratorOpener", _character, NULL_00000000-0000-0000-0000-000000000000);
+GlobalSetFlag("LEFTSTARTTRIGGER");
+
+IF
+CharacterLeftTrigger(_character, TRIGGERGUID_ForAllStartGameEventTrigger_81bf736d-fbd2-45db-88d8-36a479fedc8b)
+AND
+ObjectGetFlag(_character, "GotStarterAbilities", 0)
+THEN
+//CharacterAddTalent(_character, "LoneWolf");
+CharacterAddAbility(_character, "Loremaster", 1);
+CharacterAddAbility(_character, "Thievery", 1);
+ObjectSetFlag(_character, "GotStarterAbilities");
+SetFaction(_character, "Hero");
+
+IF
+CharacterLeftTrigger(_character, TRIGGERGUID_StartLevel01EventTrigger_61d17dc9-ac15-4b81-b248-6c17a922775c)
+AND
+GlobalGetFlag("EXITEDSTARTLEVEL01EVENTTRIGGER", 0)
+THEN
+ObjectSetFlag(_character, "QuestUpdate_EnterTheTower_Completed");
+PartyAddExperience(_character, 1, 1, 25);
+QuestArchive(_character, "EnterTheTower", 1);
+GlobalSetFlag("EXITEDSTARTLEVEL01EVENTTRIGGER");
+
+IF 
+ItemAddedToCharacter(ITEMGUID_ShirtOfPoisonProtection_000_842570d4-1f47-4d23-adc0-97e9d4abd503, _character)
+THEN
+ObjectSetFlag(_character, "QuestUpdate_JestavShirt_FoundShirt");
+//QuestUpdate(_character, "JestavShirt", "FoundShirt");
+
+/*
+IF
+CharacterLeftTrigger(_character, TRIGGERGUID_StartLevel01EventTrigger_61d17dc9-ac15-4b81-b248-6c17a922775c)
+AND
+GlobalGetFlag("HASPURITYSHIRT", 1)
+AND
+GlobalGetFlag("GOTJESTAVSHIRTEXP", 0)
+THEN
+//ObjectSetFlag(_character, "QuestUpdate_JestavShirt_Completed");
+GlobalSetFlag("GOTJESTAVSHIRTEXP");
+//PartyAddExperience(_character, 1, 1, 40);
+DisplayText(_character, "It was triggered for realz.");
+*/
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

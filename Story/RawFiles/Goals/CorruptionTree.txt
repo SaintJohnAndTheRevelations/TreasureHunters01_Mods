@@ -1,0 +1,31 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+/*IF
+ObjectFlagSet("METCORRUPTIONTREE", _character, _)
+THEN
+SetFaction(CHARACTERGUID_Corruption_Tree_01be5f48-62ab-4c86-8711-4e4951ab5066, "Evil NPC");
+DisplayText(_character, "Evil Tree Time!");
+*/
+
+
+IF
+ItemAddedToCharacter(673892ec-a697-454c-b1dd-536df7c51eb1, _character)
+THEN
+ObjectSetFlag(_character, "HASBLESSEDAXE");
+//DisplayText(_character, "I have the Blessed Axe");
+
+IF
+ObjectFlagSet("TREEMUSTDIE", _character, _)
+THEN
+CharacterDie(01be5f48-62ab-4c86-8711-4e4951ab5066, 0, "Incinerate");
+SetOnStage(ITEMGUID_Corruption_Tree_Smoke_3d20067f-cfe6-417e-8396-544a796437ee, 1);
+PartyAddExperience((CHARACTERGUID)_character, 1, 1, 3);
+DisplayText(_character, "That thing won't be turning any more souls in to the undead.");
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "TowerForest"

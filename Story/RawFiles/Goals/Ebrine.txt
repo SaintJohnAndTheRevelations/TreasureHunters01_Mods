@@ -1,0 +1,184 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Dialogs("EbrineMeet");
+DB_Dialogs("EbrineGivesAllClear");
+DB_ElectroStings(CHARACTERGUID_TRHU_Electro_Sting_000_531ddab0-b9f7-4eeb-95f1-d53113349e56);
+DB_ElectroStings(CHARACTERGUID_TRHU_Electro_Sting_001_940c6e53-6fb5-43e9-82cb-3615629bd257);
+DB_ElectroStings(CHARACTERGUID_TRHU_Electro_Sting_002_4f7e86c3-586d-42fd-907b-0bc07bd0233d);
+DB_ElectroStings(CHARACTERGUID_TRHU_Electro_Sting_003_a07be344-7347-4275-ae48-3f8d157adf0e);
+DB_ElectroStings(CHARACTERGUID_TRHU_Electro_Sting_004_fe614383-56bc-43af-8277-3c19400c3963);
+
+CharacterFollowCharacter(CHARACTERGUID_ChickenChasingChild_1df0ce1b-7fde-4cff-95ec-f77f75ada485, CHARACTERGUID_ChickenChasedByChild_9a2327b0-562e-4814-99bc-f08177eea048);
+GlobalSetFlag("TROFANAMCRIME");
+SetOnStage(ITEMGUID_SerfCaveLadder_3f8675d9-72a5-45c5-a244-2b10cdecd119, 0);
+SetOnStage(CHARACTERGUID_SerfCampDukeGuard001_63e9e8af-bc30-4fbc-a16e-9930a38116e6,0);
+SetOnStage(CHARACTERGUID_SerfCampDukeGuard002_7ccfbbb6-a269-448a-b7a8-5fa4532e0e11,0);
+SetOnStage(CHARACTERGUID_SerfCampDukeGuard003_f8d01b40-74bd-4614-9f1a-0a2c2a1bbe38,0);
+SetOnStage(CHARACTERGUID_SerfCampDukeGuard004_2f058b18-8218-41da-a76f-b76b8b8b1151,0);
+SetOnStage(CHARACTERGUID_SerfCampDukeGuard005_7bb7a46c-6e51-4f11-956b-2c584ab126ed,0);
+SetOnStage(CHARACTERGUID_TRHU_Electro_Sting_000_531ddab0-b9f7-4eeb-95f1-d53113349e56,0);
+SetOnStage(CHARACTERGUID_TRHU_Electro_Sting_001_940c6e53-6fb5-43e9-82cb-3615629bd257 ,0);
+SetOnStage(CHARACTERGUID_TRHU_Electro_Sting_002_4f7e86c3-586d-42fd-907b-0bc07bd0233d ,0);
+SetOnStage(CHARACTERGUID_TRHU_Electro_Sting_003_a07be344-7347-4275-ae48-3f8d157adf0e ,0);
+SetOnStage(CHARACTERGUID_TRHU_Electro_Sting_004_fe614383-56bc-43af-8277-3c19400c3963 ,0);
+KBSECTION
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_EbrineDialogEventTrigger_c5712840-d70f-4e86-bc1a-5e2469076e1b)
+AND
+GlobalGetFlag("TRIGGEREDEBRINEDIALOG", 0)
+AND
+CharacterIsPlayer(_character, 1)
+THEN
+CharacterMoveToAndTalk(CHARACTERGUID_EbrineTheWise_2b50142a-376d-4453-9979-a84631fbef02, _character, "EbrineMeet", 0, "", 1, 20.0);
+GlobalSetFlag("TRIGGEREDEBRINEDIALOG");
+
+IF
+GlobalFlagSet("FOUNDEBRINE")
+AND
+GlobalGetFlag("GOTEXPEBRINEFIND", 0)
+AND
+DB_TreasureHunters(_character)
+THEN
+ObjectSetFlag(_character, "QuestUpdate_FindEbrine_FoundEbrine");
+PartyAddExperience(_character, 1, 1, 50);
+GlobalSetFlag("GOTEXPEBRINEFIND");
+SetOnStage(ITEMGUID_SerfHidingHole_0b484569-a8fc-4967-9e2b-212faee2a007, 1);
+
+IF
+GlobalFlagSet("EBRINEQUESTCOMPLETED")
+AND
+GlobalGetFlag("GOTEXPEBRINEQUESTCOMPLETED", 0)
+AND
+DB_TreasureHunters(_character)
+THEN
+ObjectSetFlag(_character, "QuestUpdate_FindEbrine_Completed");
+PartyAddExperience(_character, 1, 1, 20);
+GlobalSetFlag("GOTEXPEBRINEQUESTCOMPLETED");
+
+IF
+GlobalFlagSet("FOUNDEBRINE")
+THEN
+SetOnStage(CHARACTERGUID_Reeggo_d94ccaaa-af39-40c2-b8b9-47adb47bf72b, 0);
+SetOnStage(CHARACTERGUID_Dwarves_Male_Clothing_Bandit_A_000_ff1929f7-47a1-4559-910b-a34953703230, 0);
+SetOnStage(CHARACTERGUID_Humans_Male_Armor_Bandit_A_000_ee51b86b-8676-4930-817c-0e3dbda076ba , 0);
+SetOnStage(CHARACTERGUID_Humans_Male_Bandit_000_7c9daee8-7ede-4835-9fd3-4fce219413ae, 0);
+SetOnStage(CHARACTERGUID_Trofanam_9aaf60a1-efa0-49e5-a532-13903b9f6dc6, 0);
+SetOnStage(ITEMGUID_TrofanamChest_622f0078-3337-458e-a5e6-168c92f7bd98, 0);
+
+//Electro Stings
+
+IF
+CharacterDied(_character)
+AND
+DB_ElectroStings(_character)
+AND
+GlobalGetFlag("CHECKFORELECTROSTINGS", 0)
+THEN
+NOT DB_ElectroStings(_character);
+GlobalSetFlag("CHECKFORELECTROSTINGS");
+
+IF
+GlobalFlagSet("CHECKFORELECTROSTINGS")
+AND
+NOT DB_ElectroStings(_)
+THEN
+TimerLaunch("StingsDeadEbrineArrives", 2000);
+GlobalSetFlag("DUMBTHINGWORKED");
+
+IF
+GlobalFlagSet("CHECKFORELECTROSTINGS")
+AND
+DB_ElectroStings(_)
+THEN
+GlobalClearFlag("CHECKFORELECTROSTINGS");
+
+
+IF
+TimerFinished("StingsDeadEbrineArrives")
+AND
+GlobalGetFlag("ISNIGHTTIME", 0)
+AND
+DB_IsPlayer(_character)
+THEN
+SetOnStage(ITEMGUID_TOOL_Ladder_12H_A_000_3f8675d9-72a5-45c5-a244-2b10cdecd119, 1);
+TeleportTo(CHARACTERGUID_EbrineTheWise_2b50142a-376d-4453-9979-a84631fbef02, TRIGGERGUID_EbrineReturnToCaveTeleportTrigger_e2d2cc59-556d-4594-a42e-bc3609e14859, "", 0);
+CharacterMoveToAndTalk(CHARACTERGUID_EbrineTheWise_2b50142a-376d-4453-9979-a84631fbef02, _character, "EbrineGivesAllClear", 0, "", 1, 20.0);
+SetOnStage(CHARACTERGUID_SerfCampDukeGuard002_7ccfbbb6-a269-448a-b7a8-5fa4532e0e11, 1);
+SetOnStage(CHARACTERGUID_SerfCampDukeGuard003_f8d01b40-74bd-4614-9f1a-0a2c2a1bbe38, 1);
+GlobalSetFlag("ISNIGHTTIME");
+
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_SerfCaveWormEventTrigger_bef093e0-42a4-49b5-91b2-8482ad7564aa)
+AND
+GlobalGetFlag("TRIGGEREDELECTROSTINGS", 0)
+AND
+DB_ElectroStings(_esting)
+THEN
+SetOnStage(_esting, 1);
+CharacterAppearAt(CHARACTERGUID_TRHU_Electro_Sting_000_531ddab0-b9f7-4eeb-95f1-d53113349e56, TRIGGERGUID_ElectroWorm01SpawnPointTrigger_825df5d6-2b91-4b4b-b8ce-411f1a63061f, 1, "");
+CharacterAppearAt(CHARACTERGUID_TRHU_Electro_Sting_001_940c6e53-6fb5-43e9-82cb-3615629bd257, TRIGGERGUID_ElectroWorm02SpawnPointTrigger_ba7cc43f-bf3c-4a8c-a98c-1d292986782e, 1, "");
+CharacterAppearAt(CHARACTERGUID_TRHU_Electro_Sting_002_4f7e86c3-586d-42fd-907b-0bc07bd0233d, TRIGGERGUID_ElectroWorm03SpawnPointTrigger_c02a23c4-f61f-42a0-a030-bed19919b313, 1, "");
+CharacterAppearAt(CHARACTERGUID_TRHU_Electro_Sting_003_a07be344-7347-4275-ae48-3f8d157adf0e, TRIGGERGUID_ElectroWorm04SpawnPointTrigger_30db87c7-fefe-49ee-955e-34b407e34a1b, 1, "");
+CharacterAppearAt(CHARACTERGUID_TRHU_Electro_Sting_004_fe614383-56bc-43af-8277-3c19400c3963, TRIGGERGUID_ElectroWorm05SpawnPointTrigger_86842dcf-ad35-4dc3-be7f-9aa86155f3ce, 1, "");
+GlobalSetFlag("TRIGGEREDELECTROSTINGS");
+
+IF 
+CharacterEnteredTrigger(_character, TRIGGERGUID_SerfCaveWormEventTrigger_bef093e0-42a4-49b5-91b2-8482ad7564aa)
+AND
+CharacterIsDead(CHARACTERGUID_TRHU_Electro_Sting_000_531ddab0-b9f7-4eeb-95f1-d53113349e56, 1)
+AND
+CharacterIsDead(CHARACTERGUID_TRHU_Electro_Sting_001_940c6e53-6fb5-43e9-82cb-3615629bd257, 1)
+AND
+CharacterIsDead(CHARACTERGUID_TRHU_Electro_Sting_002_4f7e86c3-586d-42fd-907b-0bc07bd0233d, 1)
+AND
+CharacterIsDead(CHARACTERGUID_TRHU_Electro_Sting_003_a07be344-7347-4275-ae48-3f8d157adf0e, 1)
+AND
+CharacterIsDead(CHARACTERGUID_TRHU_Electro_Sting_004_fe614383-56bc-43af-8277-3c19400c3963, 1)
+AND
+GlobalGetFlag("DUMBTHINGWORKED", 0)
+THEN
+TimerLaunch("StingsDeadEbrineArrives", 3000);
+
+IF
+GlobalFlagSet("GAVEALLCLEAR")
+THEN
+TimerLaunch("EbrineExitsCave", 5000);
+
+IF
+TimerFinished("EbrineExitsCave")
+THEN
+CharacterMoveTo(CHARACTERGUID_EbrineTheWise_2b50142a-376d-4453-9979-a84631fbef02, TRIGGERGUID_EbrineReturnPointTrigger_a37bbee1-366e-4cbc-8b30-6adca4fca038, 1, "", 1);
+
+
+//Serf Camp Crime Zones
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_SerfCampCrimeEventTrigger_3e902094-c93c-42dc-ae8f-b0507ea49855)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+GlobalGetFlag("ISNIGHTTIME", 1)
+AND
+GlobalGetFlag("SERFGUARDSTRIGGERED", 0)
+THEN
+CharacterMoveTo(CHARACTERGUID_SerfCampDukeGuard003_f8d01b40-74bd-4614-9f1a-0a2c2a1bbe38, _character, 1, "", 1);
+CharacterMoveTo(CHARACTERGUID_SerfCampDukeGuard002_7ccfbbb6-a269-448a-b7a8-5fa4532e0e11, _character, 1, "", 1);
+GlobalSetFlag("SERFGUARDSTRIGGERED");
+DisplayText(CHARACTERGUID_SerfCampDukeGuard003_f8d01b40-74bd-4614-9f1a-0a2c2a1bbe38, "Crime doesn't pay!");
+DisplayText(CHARACTERGUID_SerfCampDukeGuard002_7ccfbbb6-a269-448a-b7a8-5fa4532e0e11, "Justice is swift!");
+SetFaction(CHARACTERGUID_SerfCampDukeGuard003_f8d01b40-74bd-4614-9f1a-0a2c2a1bbe38, "Evil NPC");
+SetFaction(CHARACTERGUID_SerfCampDukeGuard002_7ccfbbb6-a269-448a-b7a8-5fa4532e0e11, "Evil NPC");
+
+IF
+CharacterUsedItem(_character, ITEMGUID_SerfHidingHole_0b484569-a8fc-4967-9e2b-212faee2a007)
+AND
+DB_ElectroStings(_esting)
+THEN
+SetFaction(_character, "Hero");
+SetOnStage(_esting, 0);
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DukesReflection"

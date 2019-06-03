@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1528851513" />
+    <version major="3" minor="1" revision="8" build="0" />
+    <region id="Quests">
+        <node id="root">
+            <children>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="TRHU_MainQuest" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="FindTowerKey" type="22" />
+                    <attribute id="QuestTitle" value="Find The Tower Key" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="1" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Find the key to unlock the Tower&apos;s door in Surta&apos;s camp." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Started" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="I found the key in  the dead treasure hunters&apos; camp, this is going to be easy!" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="100" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="1" type="4" />
+                            <attribute id="ReputationGain" value="10" type="4" />
+                            <attribute id="Status" value="Completed" type="22" />
+                            <children>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="QuestReward_Fixed_Medium" type="22" />
+                                </node>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="QuestReward_Choice_Hard" type="22" />
+                                </node>
+                            </children>
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="TRHU_MainQuest" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="LearnPassphrase" type="22" />
+                    <attribute id="QuestTitle" value="Learn Tower Passphrase" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="1" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Learn the passphrase to get past the Tower guards." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="1" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Started" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value='The passphrase to the Tower is &quot;Power Is Perfection&quot;.' handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Completed" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="TRHU_MainQuest" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="FindTowerRing" type="22" />
+                    <attribute id="QuestTitle" value="Find The Tower Ring" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="3" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The Tower Ring will identify you to the guards at the Tower door, without it, more guards are summoned to attack you.&#x0D;&#x0A;" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Started" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="I have the Tower Ring, the guards should let me pass if I&apos;m wearing it." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Completed" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="TRHU_MainQuest" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="EnterTheTower" type="22" />
+                    <attribute id="QuestTitle" value="Enter The Tower" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="4" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="After you&apos;ve collected the Tower Key, Tower Ring, and learned the passphrase, enter the Tower for the riches within. " handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Started" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="I was able to get into the Tower, I think..." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Completed" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="TRHU_MainQuest" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="JestavShirt" type="22" />
+                    <attribute id="QuestTitle" value="Search Jestav The Unlucky&apos;s Tomb" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="6" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Search the catacombs under the city for Jestav&apos;s tomb and bring back anything interesting to Wik. " handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Started" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="I found a shirt in Jestav&apos;s tomb that protects the wearer from poison and gave it to Wik.This mage is not particulartly grateful, nor friendly.&lt;br&gt;&lt;br&gt;I should find a way to escape." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="5" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="2" type="4" />
+                            <attribute id="QuestRewardLevel" value="5" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Completed" type="22" />
+                            <children>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_WeaponMagic" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_Skillbook" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_Scroll" type="22" />
+                                </node>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="ST_RingAmuletBelt" type="22" />
+                                </node>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="ST_Skillbook" type="22" />
+                                </node>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="ST_ArmorMagic" type="22" />
+                                </node>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="ST_WeaponRare" type="22" />
+                                </node>
+                            </children>
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="I think I found what Wik is looking for, this shirt in Jestav&apos;s tomb has an odd feel to it. " handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="FoundShirt" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="TRHU_MainQuest" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="MetDruid" type="22" />
+                    <attribute id="QuestTitle" value="Meet The Forest Druid" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="5" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="There is a druid who has been kicked out of his forest by the mage in the Tower. He shared some scrolls which should be helpful." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="1" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Completed" type="22" />
+                            <children>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_Skillbook" type="22" />
+                                </node>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="DruidPresent" type="22" />
+                                </node>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="ST_Scroll" type="22" />
+                                </node>
+                            </children>
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="TRHU_MainQuest" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="InvestigateDemonCamp" type="22" />
+                    <attribute id="QuestTitle" value="Investigate Demon Camp" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="7" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Once you&apos;re in the demon camp, investigate what the demons are doing and report back to Wik." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Started" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Reported back to Wik that I found a letter that says demons are searching for the Mirror Of Domination." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="2" type="4" />
+                            <attribute id="QuestRewardLevel" value="6" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Completed" type="22" />
+                            <children>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="ST_RingAmuletBeltRare" type="22" />
+                                </node>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="ST_WeaponRare" type="22" />
+                                </node>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="ST_Scroll" type="22" />
+                                </node>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="ST_Skillbook" type="22" />
+                                </node>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="ST_WeaponMagic" type="22" />
+                                </node>
+                            </children>
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The demons are looking for a mirror that lets the viewer control people. This will definitely interest Wik, although I&apos;m not sure she&apos;s any better than the demons." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="FoundLetter" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="TRHU_MainQuest" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="StowAway" type="22" />
+                    <attribute id="QuestTitle" value="Stow Away In Shipment Of Troll Meat" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="8" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Demons will be collecting a shipment of troll meat from a witch in Letsok Swamp. Deal with the witch and stow aboard the shipment to infiltrate the demon camp." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Started" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="I stowed aboard the shipment of troll meat. I can&apos;t tell if I&apos;m smelling the troll flesh or my own vomit. " handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Completed" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="TRHU_MainQuest" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="FindEbrine" type="22" />
+                    <attribute id="QuestTitle" value="Find Ebrine The Wise" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="10" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Locate Ebrine The Wise in the serf camp on Duke Nadold&apos;s estate. " handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Started" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Ebrine said to hide in a hole in the Eastern corner of the serf camp and wait for his signal. " handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="SerfCafeHiddenEntrance" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="FoundEbrine" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Ebrine gave the signal, it&apos;s time to visit the Duke." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Completed" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="TRHU_MainQuest" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="GetInvitation" type="22" />
+                    <attribute id="QuestTitle" value="Steal An Invitation To The Duke&apos;s Dinner" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="0" type="19" />
+                    <attribute id="SortingPriority" value="9" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Ambush Trofanam on the way to the Duke&apos;s estate and get his invitation." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Started" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="I got Trofanam&apos;s invitation to Duke Nodald&apos;s party. The invitation makes it seem like the Duke was expecting a delegation he&apos;s never met before. " handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Completed" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="TRHU_MainQuest" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="StealMirror" type="22" />
+                    <attribute id="QuestTitle" value="Steal Domination Mirror From Duke Nadold" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="0" type="19" />
+                    <attribute id="SortingPriority" value="11" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Wik says the Duke wants to use a mirror that will let him influence people and get more power, it sounds like she wants it for herself." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Started" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The mirror was destroyed by an enemy of Duke Nadold. At least he won&apos;t be using it to cause any harm or letting the demons have it." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Completed" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Night has fallen and Ebrine told me most of the guards have left the camp, it&apos;s time to go to the Duke&apos;s party." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="TimeToParty" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="I don&apos;t know what happened, but the mirror broke right when I touched it." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="BrokeMirror" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="TRHU_MainQuest" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="ReplaceUnraveler" type="22" />
+                    <attribute id="QuestTitle" value='Replace &quot;The Unraveler&quot;' handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="12" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value='Find your way to the Forgotten Cave and replace the Unraveler before the demons know it&apos;s gone and start to look elsewhere.&lt;br&gt;A cargo boat will drop you off in the jungle near Old Empire Mountain, climb to the top of the mountain and find the Forgotten Cave. When you&apos;re in the cave, speak the dwarven phrase &quot;Mundiah Fumpsis&quot; and it will reveal the hidden altar, place the dagger on it, and the altar will disappear again. &#x0D;&#x0A;' handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="ForgottenCaveEntrance" type="22" />
+                            <attribute id="QuestRewardCount" value="4" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Started" type="22" />
+                            <children>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_AllPotions" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_ArmorRare" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_RingAmuletBeltRare" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_WeaponRare" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="EquipRare" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="WizardTrader" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="TraderMagic" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="WarriorTrader" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="TraderSkill" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="TraderPotions" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_Skillbook" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_Skillbook_AirTrainer" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_Skillbook_EarthTrainer" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_Skillbook_FireTrainer" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_SkillbookAir" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_SkillbookEarth" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_SkillbookFire" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_SkillbookLate" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_SkillbookMid" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_SkillbookNecromancy" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_SkillbookPolymorph" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_SkillbookRanger" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_SkillbookRogue" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_SkillbookSummoning" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_SkillbookWarrior" type="22" />
+                                </node>
+                                <node id="QuestRewardOptionalTables">
+                                    <attribute id="QuestRewardOptionalTables" value="ST_SkillbookWater" type="22" />
+                                </node>
+                                <node id="QuestRewardTables">
+                                    <attribute id="QuestRewardTables" value="Specific_HealingPotion" type="22" />
+                                </node>
+                            </children>
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="It was much easier going down the mountain than up. Ondis and I hitched a ride on a river boat and returned to Wik. Wik has offered me freedom, and more work..." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Completed" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The Unraveler has been replaced with the counterfeit. " handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="UnravelerReplaced" type="22" />
+                        </node>
+                    </children>
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

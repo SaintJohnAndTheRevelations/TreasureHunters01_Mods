@@ -1,0 +1,27 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_TeleporterOneEventTrigger_5311daac-bf6f-4946-a8aa-93d248a06b32)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+ObjectGetFlag(_character, "TELEPORTEDONE", 0)
+THEN
+TeleportTo(_character, TRIGGERGUID_TeleportOneTeleportTrigger_d0198aad-cbcf-4774-9e11-386550015b16);
+ObjectSetFlag(_character, "TELEPORTEDONE");IF
+
+CharacterEnteredTrigger(_character, TRIGGERGUID_TeleportTwoEventTrigger_1412ec87-df04-40e7-9609-cba559f8caf4)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+ObjectGetFlag(_character, "TELEPORTEDTWO", 0)
+THEN
+TeleportTo(_character, TRIGGERGUID_TeleportTwoTeleportTrigger_675c87cd-bbe7-421a-9bcc-4bbfe3d6d081);
+ObjectSetFlag(_character, "TELEPORTEDTWO");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "Level01"

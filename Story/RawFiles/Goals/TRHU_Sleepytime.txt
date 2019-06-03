@@ -1,0 +1,24 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_SleepingBags(ITEMGUID_SleepingBag01_69668e63-94c7-4b66-a6a5-48027dee7d7d);
+DB_SleepingBags(ITEMGUID_SleepingBag02_e70785b9-818b-4e5c-9974-86fe18a34eb9);
+DB_SleepingBags(ITEMGUID_SleepingBag03_eabcda8c-b5da-496f-8d05-d3c591e5c770);
+DB_SleepingBags(ITEMGUID_SleepingBag04_df3fa5db-3626-432d-adb4-a56243cd27e9);
+KBSECTION
+IF
+CharacterUsedItem(_character, _item)
+AND
+DB_SleepingBags(_item)
+AND
+CharacterIsInCombat(_character, 0)
+THEN
+DisplayText(_character, "Zzzzzzzz");
+CharacterSetHitpointsPercentage(_character, 100.0);
+CharacterSetMagicArmorPercentage(_character, 100.0);
+CharacterSetArmorPercentage(_character, 100.0);
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

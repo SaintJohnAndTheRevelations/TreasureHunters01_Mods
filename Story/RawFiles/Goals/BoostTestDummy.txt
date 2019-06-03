@@ -1,0 +1,35 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+/*IF
+CharacterLeftTrigger(_character, TRIGGERGUID_StartEventTrigger_5b127c5f-4680-49bb-b172-0897d1af3c1f)
+THEN
+DisplayText(_character, "Boosted.");
+CharacterAddAttribute(_character, "Finesse", 20);
+CharacterAddAttribute(_character, "Wits", 20);
+CharacterAddAttribute(_character, "Constitution", 20);
+CharacterAddAbility(_character, "RogueLore", 20);
+CharacterAddAbility(_character, "Polymorph", 20);
+CharacterAddAbility(_character, "Thievery", 20);
+CharacterAddSkill(_character, "Jump_Backlash");
+CharacterAddSkill(_character, "MultiStrike_Vault");
+CharacterAddSkill(_character, "Projectile_ThrowingKnife");
+CharacterAddSkill(_character, "Target_ChickenTouch");
+CharacterAddSkill(_character, "Target_TentacleLash");
+CharacterAddAttribute(_character, "Movement", 10);
+ItemToInventory(ITEMGUID_Tower_Key_bb04ed33-f14b-4cd5-93f8-c0165a406612, _character, 1, 0);
+ItemTemplateAddTo("ITEMGUID_WPN_Elves_Dagger_1H_A_1f632a8e-58c8-402f-9a25-7ca17978693b", _character, 2);
+ItemTemplateAddTo("ITEMGUID_EQ_Armor_Mage_A_Robe_Arms_A_0a532466-b661-4de7-a152-f6d2fcda8218", _character, 1);
+ItemTemplateAddTo("ITEMGUID_EQ_Armor_Chainmail_Lowerbody_A_07c77a35-4d7c-4db6-ad23-0162608cc7da", _character, 1);
+ObjectSetFlag(_character, "KNOWSPASSPHRASE");
+ItemToInventory(ITEMGUID_Tower_Vault_Ring_cacbb655-72ce-4565-9efe-b34d964c3c9b, _character, 1,0);
+ObjectSetFlag(_character, "HASTOWERRING");
+*/
+
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "TowerForest"

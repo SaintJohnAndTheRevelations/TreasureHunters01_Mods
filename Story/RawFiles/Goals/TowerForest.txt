@@ -1,0 +1,36 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_CheckLevelStart("TowerForest");
+
+DB_QuestDef_State("FindTowerRing", "Started", 1);
+DB_QuestDef_State("LearnPassphrase", "Started", 1);
+DB_QuestDef_State("FindTowerKey", "Started", 1);
+DB_QuestDef_State("EnterTheTower", "Started", 1);
+DB_QuestDef_State("FindTowerRing", "Completed", 1);
+DB_QuestDef_State("EnterTheTower", "Completed", 1);
+DB_QuestDef_State("InvestigateTheCatacombs", "Started", 1);
+DB_QuestDef_State("InvestigateTheCatacombs", "Completed", 1);
+DB_QuestDef_State("LearnPassphrase", "Completed", 1);
+DB_QuestDef_State("FindTowerKey", "Completed", 1);
+DB_QuestDef_State("EnterTheTower", "Completed", 1);
+DB_QuestDef_State("MetDruid", "Completed", 1);
+DB_QuestDef_State("JestavShirt", "FoundShirt", 1);
+
+
+SetOnStage(CHARACTERGUID_TRHU_LittleBuddy_000_edac2932-e15e-45da-83ca-19c1ef5fc2ad, 0);
+KBSECTION
+IF
+RegionStarted("TowerForest")
+THEN
+GoalCompleted;
+
+IF DB_CheckLevelStart("TowerForest")
+AND
+DB_CurrentLevel("TowerForest")
+THEN
+GoalCompleted;
+EXITSECTION
+NOT DB_CheckLevelStart("TowerForest");
+ENDEXITSECTION
+ParentTargetEdge "__Start"

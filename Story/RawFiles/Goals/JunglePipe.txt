@@ -1,0 +1,24 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterUsedItem(_character, ITEMGUID_FUR_Lizards_Drudanae_Pipe_Big_A_000_ed091af8-50bd-480e-9c0a-ee9adc872edc)
+THEN
+CharacterAddAbility(_character, "Thievery", 3);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_WikLabTeleportTrigger_b0833993-467e-4f9c-99ab-c4bc072ef57a, "");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_FinisheGameNarratorDialogTrigger_a101ce5f-9910-4fb2-a55d-4efa16195d91)
+THEN
+Proc_StartDialog(0, "NarratorGameEnds", _character, NULL_00000000-0000-0000-0000-000000000000);
+
+IF
+GlobalFlagSet("CLOSEGAME")
+THEN
+GameEnd();
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DukeLevel"

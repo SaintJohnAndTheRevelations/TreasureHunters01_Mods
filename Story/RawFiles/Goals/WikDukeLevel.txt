@@ -1,0 +1,61 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Dialogs("WikDukeLevel");
+KBSECTION
+//WikCell 
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_LeaveWikCellDukeLevelEventTrigger_6ce7b502-8a9f-4334-979e-f6135b51fdbc)
+AND
+CharacterIsPlayer(_character, 1)
+THEN
+SetFaction(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, "Evil NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_004_68a0610c-4438-4ffe-ab2f-bd09f5ac613a, "Evil NPC");
+SetFaction(CHARACTERGUID_TRHU_Wik_002_58a994b8-7447-41a4-b631-1e23f07a001f, "Evil NPC");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_LeaveWikCellDukeLevel2EventTrigger_02d5edf1-ea95-4c82-8f52-0f41b7dca19d)
+AND
+CharacterIsPlayer(_character, 1)
+THEN
+SetFaction(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, "Evil NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_004_68a0610c-4438-4ffe-ab2f-bd09f5ac613a, "Evil NPC");
+SetFaction(CHARACTERGUID_TRHU_Wik_002_58a994b8-7447-41a4-b631-1e23f07a001f, "Evil NPC");
+
+IF
+GlobalFlagSet("WIKSENDONDUKEMISSION")
+THEN
+AutoSave();
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_Level4DukeStart1TeleportTrigger_f264829b-8ce8-4b8a-882d-1c9889e444f9, "");
+
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_StartWikDukeLevelDialogEventTrigger_0439d60b-17db-43d2-915f-e4c0bb0faa0a)
+AND 
+GlobalGetFlag("RECEIVEDDUKEMISSION", 0)
+AND
+CharacterIsInCombat(_character, 0)
+THEN
+CharacterMoveToAndTalk(CHARACTERGUID_TRHU_Wik_002_58a994b8-7447-41a4-b631-1e23f07a001f, _character, "WikDukeLevel", 0, "", 0, 20.0);
+GlobalSetFlag("RECEIVEDDUKEMISSION");
+TriggerSetAtmosphere(TRIGGERGUID_DukeLevelATMTrigger_80df3fbf-84b0-4200-80b2-cc271dfa3ea1, "d297f20d-bad1-462d-a660-0293a6e5de7b");
+SetOnStage(CHARACTERGUID_DemonStairsMage_38b179b4-6e74-4790-8e89-99e3f1dde94d, 0);
+SetOnStage(CHARACTERGUID_DemonWarriorStairs_c3d4a644-87fc-480f-94de-a1ce7aab565c, 0);
+
+IF
+GlobalFlagSet("DUKEMISSIONCOMPLETED")
+AND
+DB_IsPlayer(_character)
+THEN
+PartyAddExperience(_character, 1, 1, 200);
+TimerLaunch("WikLeaveDukeLevel", 5000);
+CharacterMoveTo(CHARACTERGUID_TRHU_Wik_002_58a994b8-7447-41a4-b631-1e23f07a001f, TRIGGERGUID_WikLeaveDukeLevelPointTrigger_10591902-6890-46ed-bfea-b7aa352a4778, 0, "", 0);
+
+IF
+TimerFinished("WikLeaveDukeLevel")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_WikLabTeleportTrigger_b0833993-467e-4f9c-99ab-c4bc072ef57a, "");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DukesReflection"

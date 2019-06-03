@@ -1,0 +1,7 @@
+DB_Deserters 0
+DB_Dialogs 1
+DB_SleepingBags 1
+DB_FirstStairLoiterers 0
+DB_PlayersFightingGuards 0
+DB_RedajTalker 0
+DB_TreasureHunters 0

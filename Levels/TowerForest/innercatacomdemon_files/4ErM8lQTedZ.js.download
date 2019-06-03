@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["M58Bk"]); }
+
+__d("AdsLWIRecommendPromotionBudgetAndDeliveryRecord",["AdsLWIDeliveryEstimateDataRecord","immutable"],(function(a,b,c,d,e,f){"use strict";var g;c=b("immutable").Record({budget_min:0,budget_max:0,currency:"",delivery_estimate_data:new(b("AdsLWIDeliveryEstimateDataRecord"))()});g=babelHelpers.inherits(a,c);g&&g.prototype;function a(){g.apply(this,arguments)}e.exports=a}),null);

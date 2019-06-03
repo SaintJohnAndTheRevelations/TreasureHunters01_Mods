@@ -1,0 +1,34 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_CheckLevelStart("DukeLand");
+DB_TreasureHunters();
+DB_QuestDef_State("FindEbrine", "Started", 1);
+DB_QuestDef_State("FindEbrine", "Completed", 1);
+DB_QuestDef_State("FindEbrine", "FoundEbrine", 1);
+DB_QuestDef_State("GetInvitation", "Started", 1);
+DB_QuestDef_State("GetInvitation", "Completed", 1);
+DB_QuestDef_State("StealMirror", "Started", 1);
+DB_QuestDef_State("StealMirror", "TimeToParty", 1);
+DB_QuestDef_State("StealMirror", "Completed", 1);
+DB_QuestDef_State("StealMirror", "BrokeMirror", 1);
+SetOnStage(CHARACTERGUID_DukeLandingTreasureHunter_000_5ae149b8-7c34-4fc8-ab3d-accf5c6ca0f5, 0);
+SetFaction(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, "Neutral NPC");
+SetFaction(CHARACTERGUID_TRHU_Wik_002_58a994b8-7447-41a4-b631-1e23f07a001f, "Neutral NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_004_68a0610c-4438-4ffe-ab2f-bd09f5ac613a, "Neutral NPC");
+TriggerSetAtmosphere(TRIGGERGUID_DukeLevelATMTrigger_80df3fbf-84b0-4200-80b2-cc271dfa3ea1, "d297f20d-bad1-462d-a660-0293a6e5de7b");
+KBSECTION
+IF
+RegionStarted("DukeLand")
+THEN
+GoalCompleted;
+
+IF DB_CheckLevelStart("DukeLand")
+AND
+DB_CurrentLevel("DukeLand")
+THEN
+GoalCompleted;
+EXITSECTION
+NOT DB_CheckLevelStart("DukeLand");
+ENDEXITSECTION
+ParentTargetEdge "__Start"

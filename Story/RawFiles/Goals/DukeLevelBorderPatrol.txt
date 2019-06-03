@@ -1,0 +1,88 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Deserters();
+KBSECTION
+IF 
+CharacterEnteredTrigger(_character, TRIGGERGUID_TryToLeaveNorthEventTrigger_8031f66d-5b45-48f3-b2fe-d25cb86fe7f6)
+AND
+CharacterIsPlayer(_character, 1)
+THEN
+SetOnStage(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, 1);
+GlobalClearFlag("TURNEDBACKTOMARKET");
+CharacterAppearAt(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, TRIGGERGUID_WikGuardNorthAppearTeleportTrigger_f006fda8-89b5-47c1-86df-b3e8330e9c21, 0, "");
+CharacterMoveToAndTalk(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, _character, "DontLeaveMarket", 0, "", 1, 30.0);
+DB_Deserters(_character);
+
+IF
+GlobalFlagSet("TRYTOLEAVEDUKEMARKET")
+THEN
+SetFaction(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, "Evil NPC");
+
+IF
+GlobalFlagSet("TURNEDBACKTOMARKET")
+AND
+DB_Deserters(_coward)
+THEN
+CharacterMoveTo(_coward, TRIGGERGUID_CowardReturnNorthPointTrigger_8d585103-2371-45dd-9e9c-32d2806396df, 1, "", 1);
+GlobalClearFlag("TURNEDBACKTOMARKET");
+TimerLaunch("NorthWikGuardWalkAway", 4000);
+TimerLaunch("NorthWikGuardWalkAway2", 8000);
+NOT DB_Deserters(_coward);
+
+IF
+TimerFinished("NorthWikGuardWalkAway")
+THEN
+CharacterMoveTo(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, TRIGGERGUID_WikGuardNorthAppearTeleportTrigger_f006fda8-89b5-47c1-86df-b3e8330e9c21, 1, "", 0);
+
+IF
+TimerFinished("NorthWikGuardWalkAway2")
+THEN
+SetOnStage(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, 0);
+
+
+
+//South Guard
+IF 
+CharacterEnteredTrigger(_character, TRIGGERGUID_TryToLeaveSouthEventTrigger_59aae037-4adc-457a-97c2-740ad0efc663)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+CharacterIsInCombat(_character, 0)
+THEN
+SetOnStage(CHARACTERGUID_Wik_Guard_004_68a0610c-4438-4ffe-ab2f-bd09f5ac613a, 1);
+GlobalClearFlag("TURNEDBACKTOMARKETSOUTH");
+CharacterAppearAt(CHARACTERGUID_Wik_Guard_004_68a0610c-4438-4ffe-ab2f-bd09f5ac613a, TRIGGERGUID_WikGuardSouthAppearPointTrigger_28e76906-e17c-407a-babb-221dd12746fb, 0, "");
+CharacterMoveToAndTalk(CHARACTERGUID_Wik_Guard_004_68a0610c-4438-4ffe-ab2f-bd09f5ac613a, _character, "DontLeaveMarketSouth", 0, "", 1, 30.0);
+DB_Deserters(_character);
+
+IF
+GlobalFlagSet("TRYTOLEAVEDUKEMARKETSOUTH")
+THEN
+SetFaction(CHARACTERGUID_Wik_Guard_004_68a0610c-4438-4ffe-ab2f-bd09f5ac613a, "Evil NPC");
+
+IF
+GlobalFlagSet("TURNEDBACKTOMARKETSOUTH")
+AND
+DB_Deserters(_coward)
+THEN
+CharacterMoveTo(_coward, TRIGGERGUID_CowardReturnSouthPointTrigger_9eaec1e9-c6d2-42c4-8c49-ce7b0352efd8, 1, "", 1);
+GlobalClearFlag("TURNEDBACKTOMARKETSOUTH");
+TimerLaunch("SouthWikGuardWalkAway", 4000);
+TimerLaunch("SouthWikGuardWalkAway2", 8000);
+NOT DB_Deserters(_coward);
+
+IF
+TimerFinished("SouthWikGuardWalkAway")
+THEN
+CharacterMoveTo(CHARACTERGUID_Wik_Guard_004_68a0610c-4438-4ffe-ab2f-bd09f5ac613a, TRIGGERGUID_WikGuardSouthAppearPointTrigger_28e76906-e17c-407a-babb-221dd12746fb, 1, "", 0);
+
+IF
+TimerFinished("SouthWikGuardWalkAway2")
+THEN
+SetOnStage(CHARACTERGUID_Wik_Guard_004_68a0610c-4438-4ffe-ab2f-bd09f5ac613a, 0);
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DukesReflection"

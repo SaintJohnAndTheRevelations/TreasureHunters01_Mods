@@ -1,0 +1,20 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_CheckLevelStart("DukeLevel");
+TimerLaunch("StartEndDialogue", 3000);
+KBSECTION
+IF
+RegionStarted("DukeLevel")
+THEN
+GoalCompleted;
+
+IF DB_CheckLevelStart("DukeLevel")
+AND
+DB_CurrentLevel("DukeLevel")
+THEN
+GoalCompleted;
+EXITSECTION
+NOT DB_CheckLevelStart("DukeLevel");
+ENDEXITSECTION
+ParentTargetEdge "__Start"

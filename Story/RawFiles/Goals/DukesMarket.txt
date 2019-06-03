@@ -1,0 +1,114 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_FirstStairLoiterers();
+DB_TreasureHunters();
+KBSECTION
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_WelcomeDukesMarketEventTrigger_71098723-d675-4d52-9714-0b938c4a0372)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+GlobalGetFlag("ISNIGHTTIME", 0)
+AND
+GlobalGetFlag("HASWELCOMEDTOMARKET", 0)
+THEN
+DisplayText(CHARACTERGUID_TRHU_Duke_Guard_A_002_a47a3f8e-1e2a-4f62-8607-1941ca925621, "Good afternoon! Welcome to the Duke's Royal Market, shops are about to close, but you still have a few minutes!");
+GlobalSetFlag("HASWELCOMEDTOMARKET");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_WelcomeDukesMarketEventTrigger_71098723-d675-4d52-9714-0b938c4a0372)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+GlobalGetFlag("ISNIGHTTIME", 1)
+AND
+GlobalGetFlag("HASWELCOMEDTOMARKETNIGHT", 0)
+THEN
+DisplayText(CHARACTERGUID_TRHU_Duke_Guard_A_002_a47a3f8e-1e2a-4f62-8607-1941ca925621, "Good evening! The shops are closed. If you're here for the Duke's party, follow the torches and please have your invitation ready.");
+GlobalSetFlag("HASWELCOMEDTOMARKETNIGHT");
+
+
+
+//Start Duke Estate
+IF
+CharacterLeftTrigger(_character, TRIGGERGUID_StartDukeNarratorDialogEventTrigger_804af46c-265c-4062-a935-dfd8eb481081)
+AND
+GlobalGetFlag("LEFTSTARTDUKELEVELTRIGGER", 0)
+THEN
+Proc_StartDialog(0, "NarratorDukeLevel", _character, NULL_00000000-0000-0000-0000-000000000000);
+SetFaction(CHARACTERGUID_Dwarves_Male_Clothing_Bandit_A_000_ff1929f7-47a1-4559-910b-a34953703230, "Evil NPC");
+SetFaction(CHARACTERGUID_Humans_Male_Armor_Bandit_A_000_ee51b86b-8676-4930-817c-0e3dbda076ba, "Evil NPC");
+SetFaction(CHARACTERGUID_Humans_Male_Bandit_000_7c9daee8-7ede-4835-9fd3-4fce219413ae, "Evil NPC");
+GlobalSetFlag("LEFTSTARTDUKELEVELTRIGGER");
+CharacterDie(CHARACTERGUID_Reeggo_d94ccaaa-af39-40c2-b8b9-47adb47bf72b, 1, "");
+DB_TreasureHunters(_character);
+SetOnStage(ITEMGUID_SerfHidingHole_0b484569-a8fc-4967-9e2b-212faee2a007, 0);
+//SetTag(_character, "OUTLAW");
+SetFaction(CHARACTERGUID_Wik_Guard_003_8f51d589-e064-4b3f-a6cd-df7fe08596d1, "Neutral NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_004_68a0610c-4438-4ffe-ab2f-bd09f5ac613a, "Neutral NPC");
+SetOnStage(CHARACTERGUID_DukeLandingTreasureHunter_000_5ae149b8-7c34-4fc8-ab3d-accf5c6ca0f5, 0);
+CharacterSetCanTrade(CHARACTERGUID_DukeLandingTreasureHunter_000_5ae149b8-7c34-4fc8-ab3d-accf5c6ca0f5, 0);
+
+
+//daytime first stair guard convo
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_DukeGuardsFirstStairCaseEventTrigger_48eef12b-70d0-4f4b-80e2-3b606831b59e)
+AND
+GlobalGetFlag("ISNIGHTTIME", 0)
+AND
+GlobalGetFlag("INSTAIRONEDANGERZONE", 0)
+THEN
+CharacterMoveToAndTalk(CHARACTERGUID_StairOneTalkingGuard_db2d50c7-5e70-4b10-b6cb-23e5acd419ad, _character, "StairOneGuard", 0, "", 1, 20.0);
+GlobalSetFlag("INSTAIRONEDANGERZONE");
+DB_FirstStairLoiterers(_character);
+
+IF
+CharacterLeftTrigger(_character, TRIGGERGUID_DukeGuardsFirstStairCaseEventTrigger_48eef12b-70d0-4f4b-80e2-3b606831b59e)
+THEN
+NOT DB_FirstStairLoiterers(_character);
+GlobalClearFlag("INSTAIRONEDANGERZONE");
+
+//Nightime First Stair guard convo
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_DukeGuardsFirstStairCaseEventTrigger_48eef12b-70d0-4f4b-80e2-3b606831b59e)
+AND
+GlobalGetFlag("ISNIGHTTIME", 1)
+AND
+GlobalGetFlag("SHOWEDINVITATION", 0)
+THEN
+CharacterMoveToAndTalk(CHARACTERGUID_StairOneTalkingGuard_db2d50c7-5e70-4b10-b6cb-23e5acd419ad, _character, "StairOneGuard", 0, "", 1, 20.0);
+GlobalSetFlag("SHOWEDINVITATION");
+
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_TresspassStairOneEventTrigger_dc0b4b9b-b302-4f71-a09c-5d73a8798e2e)
+AND
+GlobalGetFlag("MAYPASSTODUKE", 0)
+THEN
+SetFaction(CHARACTERGUID_TRHU_Duke_Guard_A_002_a47a3f8e-1e2a-4f62-8607-1941ca925621, "Evil NPC");
+SetFaction(CHARACTERGUID_TRHU_Duke_Guard_A_003_d8c2f52e-fe34-4635-aeab-a4dfc0597c27, "Evil NPC");
+SetFaction(CHARACTERGUID_TRHU_Duke_Guard_A_004_6bba28f4-5218-42a3-8d6e-1623185e0c49, "Evil NPC");
+SetFaction(CHARACTERGUID_TRHU_Duke_Guard_B_000_fc9d4d03-2062-4ddd-850a-625b7f882426, "Evil NPC");
+SetFaction(CHARACTERGUID_StairOneTalkingGuard_db2d50c7-5e70-4b10-b6cb-23e5acd419ad, "Evil NPC");
+
+IF
+GlobalFlagSet("DUKEGUARDTHREATENED")
+THEN
+TimerLaunch("StepDownStairsNow", 10000);
+
+IF
+TimerFinished("StepDownStairsNow")
+AND
+DB_FirstStairLoiterers(_)
+THEN
+SetFaction(CHARACTERGUID_TRHU_Duke_Guard_A_002_a47a3f8e-1e2a-4f62-8607-1941ca925621, "Evil NPC");
+SetFaction(CHARACTERGUID_TRHU_Duke_Guard_A_003_d8c2f52e-fe34-4635-aeab-a4dfc0597c27, "Evil NPC");
+SetFaction(CHARACTERGUID_TRHU_Duke_Guard_A_004_6bba28f4-5218-42a3-8d6e-1623185e0c49, "Evil NPC");
+SetFaction(CHARACTERGUID_TRHU_Duke_Guard_B_000_fc9d4d03-2062-4ddd-850a-625b7f882426, "Evil NPC");
+SetFaction(CHARACTERGUID_StairOneTalkingGuard_db2d50c7-5e70-4b10-b6cb-23e5acd419ad, "Evil NPC");
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DukesReflection"

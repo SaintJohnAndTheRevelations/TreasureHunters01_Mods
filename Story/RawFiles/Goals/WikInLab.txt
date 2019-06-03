@@ -1,0 +1,70 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_QuestDef_State("ReplaceUnraveler", "Started", 1);
+DB_QuestDef_State("ReplaceUnraveler", "Completed", 1);
+DB_QuestDef_State("ReplaceUnraveler", "UnravelerReplaced", 1);
+DB_Dialogs("WikMountainQuest");
+DB_ItemOwnershipTriggers("FreedomLevel", TRIGGERGUID_WikCrimeBoxTrigger_170d0e2a-4cb5-4b7c-a690-f35b15f3417e, CHARACTERGUID_TRHU_Wik_003_70de9067-5b39-4212-8db6-36fbdac19eb3);
+KBSECTION
+//Start Wik Dialog
+IF
+CharacterLeftTrigger(_character, TRIGGERGUID_WikStartMountainDialogEventTrigger_499b51bd-40d4-4af6-ba07-99a0fe5903ed)
+AND
+GlobalGetFlag("STARTWIKMOUNTAINDIALOGUE", 0)
+THEN
+CharacterMoveToAndTalk(CHARACTERGUID_TRHU_Wik_003_70de9067-5b39-4212-8db6-36fbdac19eb3, _character, "WikMountainQuest",0, "", 0, 20.0);
+SetOnStage(CHARACTERGUID_TRHU_Mountain_Worm_000_066ec08f-11fb-4493-94a5-8cb90708bab0, 0);
+GlobalSetFlag("STARTWIKMOUNTAINDIALOGUE");
+//PartyAddExperience(_character, 1, 1, 50000);
+
+
+//Take fake Unraveler and start quest
+IF
+ItemAddedToCharacter(ITEMGUID_FakeUnraveler_7bb66cdd-e4c1-4e18-89cb-108688f579a0, _character)
+THEN
+TimerLaunch("OndisCollectionTimer", 3000);
+DisplayText(CHARACTERGUID_Wik_Guard_005_fbefb346-b716-4d49-8498-bc49dd8a19cb, "Let's go, we have a boat to catch.");
+CharacterMoveTo(CHARACTERGUID_Wik_Guard_005_fbefb346-b716-4d49-8498-bc49dd8a19cb, _character, 0, "", 0);
+
+IF
+TimerFinished("OndisCollectionTimer")
+THEN
+GlobalSetFlag("STARTMOUNTAINQUEST");
+
+IF
+GlobalFlagSet("STARTMOUNTAINQUEST")
+THEN
+AutoSave();
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_JungleStartTeleportTrigger_255c7606-51ae-48af-b8a4-e562b57ecf0d, "");
+
+IF
+ObjectFlagSet("QuestUpdate_ReplaceUnraveler_Started", _character, _)
+THEN
+CharacterGiveQuestReward((CHARACTERGUID)_character, "ReplaceUnraveler", "Started");
+ItemSetOwner(ITEMGUID_FakeUnraveler_7bb66cdd-e4c1-4e18-89cb-108688f579a0, _character);
+
+//Finish game
+IF
+ObjectFlagSet("CHOSEWORK", _character, _)
+THEN
+CharacterMoveTo(CHARACTERGUID_Wik_Guard_005_fbefb346-b716-4d49-8498-bc49dd8a19cb, _character, 0, "", 0);
+CharacterMoveTo(CHARACTERGUID_TRHU_Wik_003_70de9067-5b39-4212-8db6-36fbdac19eb3, TRIGGERGUID_WikFinishedPointTrigger_fff95924-a07c-46d8-88b1-afe464a3a27f, 0, "", 0);
+TimerLaunch("WikLeaveFinishGame", 5000);
+
+IF
+ObjectFlagSet("BOOKONECOMPLETE", _character, _)
+THEN
+CharacterMoveTo(CHARACTERGUID_Wik_Guard_005_fbefb346-b716-4d49-8498-bc49dd8a19cb, _character, 0, "", 0);
+CharacterMoveTo(CHARACTERGUID_TRHU_Wik_003_70de9067-5b39-4212-8db6-36fbdac19eb3, TRIGGERGUID_WikFinishedPointTrigger_fff95924-a07c-46d8-88b1-afe464a3a27f, 0, "", 0);
+TimerLaunch("WikLeaveFinishGame", 5000);
+GlobalSetFlag("EPILOGUE");
+
+IF
+TimerFinished("WikLeaveFinishGame")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_FinisheGameTeleportTrigger_272688f3-e33a-451f-b1a2-a37e8d404ea6, "");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "ManyHappyReturns"

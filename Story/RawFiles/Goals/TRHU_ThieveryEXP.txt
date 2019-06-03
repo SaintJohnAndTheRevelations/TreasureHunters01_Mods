@@ -1,0 +1,56 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//Lockpicking - Only one key template Hum_Key_A is marked as a key, more should be added, or a better solution
+
+IF
+CanLockpickItem(_character, _item, _request)
+THEN
+ObjectSetFlag(_item, "LOCKPICKITEM");
+
+IF
+ItemTemplateAddedToCharacter(Hum_Key_A_492c91c4-68cc-482e-9985-0fc298f9ed81, _item, _character)
+THEN
+ObjectSetFlag(_item, "ISKEY");
+//DisplayText(_character, "That is indeed a key!");
+
+IF
+ItemUnlocked(_item, _character, _key)
+AND
+ObjectGetFlag(_item, "LOCKPICKITEM", 1)
+AND
+ObjectGetFlag(_key, "ISKEY", 0)
+AND
+CharacterGetAbility(_character, "Thievery", _thieverynum)
+AND
+CharacterGetLevel(_character, _charlevel)
+AND
+IntegerSum(2, _charlevel, _actpart)
+THEN
+PartyAddExperience(_character, 1, _actpart, 1);
+//DisplayText(_character, "Lockpicker!!!");
+
+
+//Pickpocket
+/*IF
+CharacterPickpocketSuccess(_character, _npc, _item, _amount)
+AND
+IntegerProduct(_amount, 2, _exp)
+THEN
+PartyAddExperience((CHARACTERGUID)_character, 1, 1, _exp);
+DisplayText(_character, "Shhhh, I'll bring it back later.");
+*/
+/*
+//Disarm Trap - not sure how to do to this yet
+IF
+CharacterDestroyedItemTemplate(_character, "ITEMGUID_PUZ_Trap_Mine_Fire_A_081_b08bde47-8322-47d3-834f-f6dc5db195c5")
+THEN
+DisplayText(_character, "No boom. Cool.");
+PartyAddExperience((CHARACTERGUID)_character, 1, 1, 1);
+*/
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

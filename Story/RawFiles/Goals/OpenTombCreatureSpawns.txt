@@ -1,0 +1,114 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_GheistAppearsEventTrigger_c555021e-410f-4da9-a997-bce8702a3dba)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+CharacterIsDead(CHARACTERGUID_TRHU_AgitatedGheist_9a4ac96f-4287-41f2-82b0-e2d19f15e9ac, 0)
+AND
+GlobalGetFlag("TRIGGEREDGHEIST", 0)
+THEN
+SetOnStage(CHARACTERGUID_TRHU_AgitatedGheist_9a4ac96f-4287-41f2-82b0-e2d19f15e9ac, 1);
+CharacterMoveTo(CHARACTERGUID_TRHU_AgitatedGheist_9a4ac96f-4287-41f2-82b0-e2d19f15e9ac, _character, 1, "", 1);
+//DisplayText(CHARACTERGUID_TRHU_AgitatedGheist_9a4ac96f-4287-41f2-82b0-e2d19f15e9ac, "You should not be in here, this place is for the dead.");
+GlobalSetFlag("TRIGGEREDGHEIST");
+
+IF
+ObjectEnteredCombat(CHARACTERGUID_TRHU_AgitatedGheist_9a4ac96f-4287-41f2-82b0-e2d19f15e9ac, _)
+THEN
+DisplayText(CHARACTERGUID_TRHU_AgitatedGheist_9a4ac96f-4287-41f2-82b0-e2d19f15e9ac, "Let the dead be!");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_VampireBatEventTrigger_43003f6b-9b0c-4d28-a849-93845201e84b)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+GlobalGetFlag("VAMPIREBATTRIGGERED", 0)
+THEN
+SetOnStage(CHARACTERGUID_Creatures_VampireBat_A_000_e3d717d6-3ce8-481b-8b18-46ddda5789a4, 1);
+ItemDestroy(ITEMGUID_VampireBatTomb_da21cd8f-3bd2-4ffe-8246-a1b0aa8118e3);
+GlobalSetFlag("VAMPIREBATTRIGGERED");
+
+IF
+ItemOpened(ITEMGUID_CryptLarvaTomb_0c94c88d-efd0-4a73-abe1-99c0376b4dea)
+THEN
+SetOnStage(CHARACTERGUID_TRHU_Crypt_Larvae_000_f5c7b2d9-ad58-44e9-80d4-e6f8b7700e97, 1);
+ItemDestroy(ITEMGUID_CryptLarvaTomb_0c94c88d-efd0-4a73-abe1-99c0376b4dea);
+
+IF
+ItemOpened(ITEMGUID_BloatedCorpseTomb2_20f92b52-c6cc-44b9-8aed-218b5bc0de95)
+THEN
+SetOnStage(CHARACTERGUID_BloatedCorpse_000_758be288-8754-47c9-a973-c8e49a33df61, 1);
+ItemDestroy(ITEMGUID_BloatedCorpseTomb2_20f92b52-c6cc-44b9-8aed-218b5bc0de95);
+
+IF
+ItemOpened(ITEMGUID_BonepileHandTomb_2de24694-4932-4913-a284-726225d5ba55)
+THEN
+SetOnStage(CHARACTERGUID_TRHU_Creatures_Undead_Bonepile_Hand_A_000_f91ef96d-1ba9-4698-a1c2-8cc7a77d53a8, 1);
+SetOnStage(CHARACTERGUID_TRHU_Creatures_Undead_Bonepile_Hand_A_001_687019ec-455b-4af3-bef0-d2439a8f3f92, 1);
+SetOnStage(CHARACTERGUID_TRHU_Creatures_Undead_Bonepile_Hand_A_002_50c6e5e8-67aa-4318-94d8-3e2719570ae1, 1);
+SetOnStage(CHARACTERGUID_TRHU_Creatures_Undead_Bonepile_Hand_A_003_1d9cf071-7b42-4d71-a581-c400854e5475, 1);
+
+
+IF
+ItemOpened(ITEMGUID_BloatedCorpseTomb_2c430103-a496-45cf-b8cb-c6d86bf8795e)
+THEN
+SetOnStage(CHARACTERGUID_BloatedCorpse01_6dbc9183-414e-405e-99bd-a8e71335ff48, 1);
+ItemDestroy(ITEMGUID_BloatedCorpseTomb_2c430103-a496-45cf-b8cb-c6d86bf8795e);
+
+
+IF
+ItemOpened(ITEMGUID_CarrionDemonTomb01_0a6f2c6d-c50f-4276-8312-30827039ae6c)
+THEN
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_008_421041a6-07e0-40b1-aca5-10e9f31dc0ea, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_010_041276c9-518d-48f7-ad41-e9774a712423, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_011_d59c1749-0709-468d-8d59-e3e45cf1bce3, 1);
+ItemDestroy(ITEMGUID_CarrionDemonTomb01_0a6f2c6d-c50f-4276-8312-30827039ae6c);
+
+IF
+ItemOpened(ITEMGUID_CarrionDemonTomb02_7ef58012-630d-45b7-bfc9-c6545d7199ae)
+THEN
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_001_fe0ac027-277c-47d9-afda-78992c1eaf43, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_003_33b8e533-cd31-461f-8fad-a2ba10ad88d1, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_004_ffb2d9f0-4984-41a3-8d16-15f296b7ec3b, 1);
+ItemDestroy(ITEMGUID_CarrionDemonTomb02_7ef58012-630d-45b7-bfc9-c6545d7199ae);
+
+IF
+ItemOpened(ITEMGUID_CarrionDemonTomb03_9c7372a3-62ca-4206-bc64-3edcbe03baca)
+THEN
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_000_24b4d912-9414-4b91-b4b0-b4d1adf012c7, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_006_13c4d86e-15d1-493c-a46d-fe6bb8655685, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_007_ac6b0231-d194-47c4-a111-a9d5345a75ce, 1);
+ItemDestroy(ITEMGUID_CarrionDemonTomb03_9c7372a3-62ca-4206-bc64-3edcbe03baca);
+
+IF
+ItemOpened(ITEMGUID_CarrionDemonTomb04_baa012ae-30b1-46c4-ad12-38d39abaa3f0)
+THEN
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_002_0c722360-637f-4a0c-984f-a80644a64e76, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_005_77e9b482-3597-4551-b62e-d88dcadfb0ca, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_009_ebacef89-32aa-4a63-bd44-42a8ecd2b56a, 1);
+ItemDestroy(ITEMGUID_CarrionDemonTomb04_baa012ae-30b1-46c4-ad12-38d39abaa3f0);
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_CarrionBeetleEventTrigger_a3a3be33-5e06-447a-858c-20c92d68df44)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+GlobalGetFlag("CARRIONBEETLESTRIGGERED", 0)
+THEN
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Beetle_000_4a839e45-bd23-45d3-95c2-21ab3f911657, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Beetle_001_0f02ba9f-8a8d-48ce-bc34-e63b5b43c5ff, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Beetle_002_216c48e2-226e-4c60-943f-04e7e8e86166, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Beetle_003_009c36ce-de57-41c6-8476-f45dd3c60166, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Beetle_004_ca91d4cc-99f7-48e9-b131-b088b1d6a4a7, 1);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Beetle_005_28bf792c-0f05-41a0-b900-ebed22a31144, 1);
+ItemDestroy(ITEMGUID_CarrionDemonTomb01_0a6f2c6d-c50f-4276-8312-30827039ae6c);
+GlobalSetFlag("CARRIONBEETLESTRIGGERED");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "Level01"

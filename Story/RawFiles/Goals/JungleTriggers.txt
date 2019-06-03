@@ -1,0 +1,63 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_SerratedTigers(CHARACTERGUID_TRHU_Serrated_Tiger_000_7b8eb56c-df5b-423f-b0ff-247746d37afc);
+DB_SerratedTigers(CHARACTERGUID_TRHU_Serrated_Tiger_001_b297c43a-c312-4fe1-982a-d603b2fd5873);
+DB_SerratedTigers(CHARACTERGUID_TRHU_Serrated_Tiger_002_97d9b50e-74fb-4e29-9b85-dde07dac4543);
+DB_Dialogs("TenthLifeMeet");
+KBSECTION
+IF
+CharacterDied(_character)
+AND
+DB_SerratedTigers(_character)
+THEN
+NOT DB_SerratedTigers(_character);
+
+IF
+CharacterDied(_character)
+AND
+NOT DB_SerratedTigers(_)
+THEN
+GlobalSetFlag("TIGERSKILLED");
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_TenthLifeEventTrigger_3ec38a68-d82f-4111-920c-83a7c2f3513c)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+GlobalGetFlag("TRIGGEREDTENTHLIFE", 0)
+AND
+DB_SerratedTigers(_kitty)
+THEN
+TimerLaunch("HereKittyKitty", 6000);
+CharacterMoveToAndTalk(CHARACTERGUID_Animals_Cat_Skeleton_A_000_29e24015-641b-42dc-a441-395e497ea9b9, _character, "TenthLifeMeet", 0, "", 0, 20.0);
+GlobalSetFlag("TRIGGEREDTENTHLIFE");
+
+IF
+TimerFinished("HereKittyKitty")
+AND
+DB_SerratedTigers(_kitty)
+THEN
+CharacterMoveTo((CHARACTERGUID)_kitty, CHARACTERGUID_Animals_Cat_Skeleton_A_000_29e24015-641b-42dc-a441-395e497ea9b9, 1, "", 0);
+
+IF
+GlobalFlagSet("CATFIGHT")
+THEN
+TimerLaunch("CatFight", 2000);
+
+IF
+TimerFinished("CatFight")
+THEN
+CharacterMoveTo(CHARACTERGUID_Animals_Cat_Skeleton_A_000_29e24015-641b-42dc-a441-395e497ea9b9, TRIGGERGUID_SkeleCatWalkbackPointTrigger_1f834d1e-5603-4632-842d-414103e9110a, 1, "", 0);
+TimerLaunch("SkeleCatGoesInvisible", 1000);
+SetFaction(CHARACTERGUID_Animals_Cat_Skeleton_A_000_29e24015-641b-42dc-a441-395e497ea9b9, "Evil NPC");
+
+IF
+TimerFinished("SkeleCatGoesInvisible")
+THEN
+CharacterUseSkill(CHARACTERGUID_Animals_Cat_Skeleton_A_000_29e24015-641b-42dc-a441-395e497ea9b9, "Shout_InvisibilitySelf", CHARACTERGUID_Animals_Cat_Skeleton_A_000_29e24015-641b-42dc-a441-395e497ea9b9, 1, 1);
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "ManyHappyReturns"

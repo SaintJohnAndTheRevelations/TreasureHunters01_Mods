@@ -1,0 +1,127 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Dialogs(CHARACTERGUID_TRHU_Wik_000_45ecd622-4097-4777-ae00-35d267f7c953, "WikFirstMeet");
+KBSECTION
+IF
+GlobalFlagSet("FIRSTTOWERLEVELCOMPLETE")
+THEN
+CharacterMoveTo(CHARACTERGUID_TRHU_Wik_000_45ecd622-4097-4777-ae00-35d267f7c953, TRIGGERGUID_WikLeavesCellRoomPointTrigger_2bd475ab-436c-4a99-bc8d-73507720c592, 0, "", 0);
+TimerLaunch("WikLeave", 5000);
+
+IF
+TimerFinished("WikLeave")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_CrateDarkRoomTeleportTrigger_4170c4dc-b4a2-46a1-94c0-4efc96dbdea0, "");
+TimerLaunch("GoToSecondWikMeeting", 5000);
+
+IF
+TimerFinished("GoToSecondWikMeeting")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_CellFromSwampTeleportTrigger_87d9f648-e13b-4f1e-a4a2-cbc4f1d69c80, "");
+
+IF
+ObjectFlagSet("QuestUpdate_JestavShirt_Completed", _character, _)
+THEN
+CharacterGiveQuestReward((CHARACTERGUID)_character, "JestavShirt", "Completed");
+ItemRemove(ITEMGUID_ShirtOfPoisonProtection_000_842570d4-1f47-4d23-adc0-97e9d4abd503);
+TriggerSetAtmosphere(TRIGGERGUID_WikCellRoomATMTrigger_a9ce0343-411a-4f75-8748-0c8e49b54780, "b5ecd83c-f936-41cd-a0ae-5049c1041bea");
+PartyAddExperience(_character, 1, 1, 200);
+
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_WikDialogStartEventTrigger_57b0bc9b-fe22-448d-8d21-8ac6184b0f6c)
+AND
+CharacterIsInCombat(_character, 0)
+THEN
+CharacterMoveToAndTalk(CHARACTERGUID_TRHU_Wik_000_45ecd622-4097-4777-ae00-35d267f7c953, _character, "WikFirstMeet", 1, "", 0, 20.0);
+
+IF
+CharacterEnteredTrigger(_character, TRIGGERGUID_WikDialogStartEventTrigger_57b0bc9b-fe22-448d-8d21-8ac6184b0f6c)
+AND
+GlobalGetFlag("STENCH", 0)
+THEN
+DisplayText(CHARACTERGUID_Wik_Guard_001_2096772f-102b-4eae-b639-70c4fcc49892, "Ma'am, the stench is awake.");
+GlobalSetFlag("STENCH");
+
+
+
+IF
+GlobalFlagSet("SENDBACKTOCATACOMBS")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_CatacombsTeleportTrigger_4f3e7f1b-b867-4a5f-a000-9aa6ae92a50d, "");
+GlobalClearFlag("SENDBACKTOCATACOMBS");
+
+IF 
+CharacterLeftTrigger(_character, TRIGGERGUID_StartLevel01EventTrigger_61d17dc9-ac15-4b81-b248-6c17a922775c)
+AND
+CharacterIsPlayer(_character, 1)
+AND
+ObjectGetFlag(_character, "HASSAVEDBEFOREWIK", 0)
+AND
+CharacterIsInCombat(_character, 0)
+THEN
+//DisplayText(_character, "Saving...");
+ItemRemove(ITEMGUID_Tower_Key_bb04ed33-f14b-4cd5-93f8-c0165a406612);
+ItemRemove(ITEMGUID_Tower_Vault_Ring_cacbb655-72ce-4565-9efe-b34d964c3c9b);
+ObjectSetFlag(_character, "HASSAVEDBEFOREWIK");
+AutoSave();
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_008_421041a6-07e0-40b1-aca5-10e9f31dc0ea, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_010_041276c9-518d-48f7-ad41-e9774a712423, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_011_d59c1749-0709-468d-8d59-e3e45cf1bce3, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_001_fe0ac027-277c-47d9-afda-78992c1eaf43, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_003_33b8e533-cd31-461f-8fad-a2ba10ad88d1, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_004_ffb2d9f0-4984-41a3-8d16-15f296b7ec3b, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_000_24b4d912-9414-4b91-b4b0-b4d1adf012c7, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_006_13c4d86e-15d1-493c-a46d-fe6bb8655685, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_007_ac6b0231-d194-47c4-a111-a9d5345a75ce, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_002_0c722360-637f-4a0c-984f-a80644a64e76, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_005_77e9b482-3597-4551-b62e-d88dcadfb0ca, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Demon_009_ebacef89-32aa-4a63-bd44-42a8ecd2b56a, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Beetle_000_4a839e45-bd23-45d3-95c2-21ab3f911657, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Beetle_001_0f02ba9f-8a8d-48ce-bc34-e63b5b43c5ff, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Beetle_002_216c48e2-226e-4c60-943f-04e7e8e86166, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Beetle_003_009c36ce-de57-41c6-8476-f45dd3c60166, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Beetle_004_ca91d4cc-99f7-48e9-b131-b088b1d6a4a7, 0);
+SetOnStage(CHARACTERGUID_TRHU_Carrion_Beetle_005_28bf792c-0f05-41a0-b900-ebed22a31144, 0);
+SetOnStage(CHARACTERGUID_Creatures_VampireBat_A_000_e3d717d6-3ce8-481b-8b18-46ddda5789a4, 0);
+SetOnStage(CHARACTERGUID_BloatedCorpse01_6dbc9183-414e-405e-99bd-a8e71335ff48, 0);
+SetOnStage(CHARACTERGUID_TRHU_Creatures_Undead_Bonepile_Hand_A_000_f91ef96d-1ba9-4698-a1c2-8cc7a77d53a8, 0);
+SetOnStage(CHARACTERGUID_TRHU_Creatures_Undead_Bonepile_Hand_A_001_687019ec-455b-4af3-bef0-d2439a8f3f92, 0);
+SetOnStage(CHARACTERGUID_TRHU_Creatures_Undead_Bonepile_Hand_A_002_50c6e5e8-67aa-4318-94d8-3e2719570ae1, 0);
+SetOnStage(CHARACTERGUID_TRHU_Creatures_Undead_Bonepile_Hand_A_003_1d9cf071-7b42-4d71-a581-c400854e5475, 0);
+SetOnStage(CHARACTERGUID_TRHU_AgitatedGheist_9a4ac96f-4287-41f2-82b0-e2d19f15e9ac, 0);
+SetOnStage(CHARACTERGUID_TRHU_Crypt_Larvae_000_f5c7b2d9-ad58-44e9-80d4-e6f8b7700e97, 0);
+SetOnStage(CHARACTERGUID_BloatedCorpse_000_758be288-8754-47c9-a973-c8e49a33df61, 0);
+
+IF
+CharacterLeftTrigger(_character, TRIGGERGUID_LeaveWikCellTrigger_a8cd5756-5e24-4fac-972c-f9fa636b97d4)
+THEN
+SetFaction(CHARACTERGUID_Wik_Guard_001_2096772f-102b-4eae-b639-70c4fcc49892, "Evil NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_002_b52118d7-48d8-47aa-b816-d59d02308d12, "Evil NPC");
+SetFaction(CHARACTERGUID_TRHU_Wik_000_45ecd622-4097-4777-ae00-35d267f7c953, "Evil NPC");
+
+IF
+ObjectFlagSet("CHOSETODIE", _character, _)
+THEN
+CharacterMoveTo(CHARACTERGUID_TRHU_Wik_000_45ecd622-4097-4777-ae00-35d267f7c953, TRIGGERGUID_WikWalkBackPointTrigger_0293da4a-6b74-4d31-810b-5a4df3369fe4, 0, "", 1);
+SetFaction(CHARACTERGUID_Wik_Guard_001_2096772f-102b-4eae-b639-70c4fcc49892, "Evil NPC");
+SetFaction(CHARACTERGUID_TRHU_Wik_000_45ecd622-4097-4777-ae00-35d267f7c953, "Evil NPC");
+SetFaction(CHARACTERGUID_Wik_Guard_002_b52118d7-48d8-47aa-b816-d59d02308d12, "Evil NPC");
+
+IF 
+ObjectFlagSet("CHOSETOSERVE", _character, _)
+THEN
+TimerLaunch("SENDTOCATACOMBS", 6000);
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DarkSpotLevel01TeleportTrigger_5bca8229-c13b-46cd-8eb5-69bdf1a34ba5, "");
+
+
+IF
+TimerFinished("SENDTOCATACOMBS")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_CatacombsTeleportTrigger_4f3e7f1b-b867-4a5f-a000-9aa6ae92a50d, "");
+TeleportTo(CHARACTERGUID_TRHU_Wik_000_45ecd622-4097-4777-ae00-35d267f7c953, TRIGGERGUID_WikSecondStartPoint_1d825ebf-2679-4cf4-bff3-085888c409c0);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "Level01"

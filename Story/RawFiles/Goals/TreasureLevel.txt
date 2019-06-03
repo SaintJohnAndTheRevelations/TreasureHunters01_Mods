@@ -1,0 +1,20 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_CheckLevelStart("TreasureLevel");
+
+KBSECTION
+IF
+RegionStarted("TreasureLevel")
+THEN
+GoalCompleted;
+
+IF DB_CheckLevelStart("TreasureLevel")
+AND
+DB_CurrentLevel("TreasureLevel")
+THEN
+GoalCompleted;
+EXITSECTION
+NOT DB_CheckLevelStart("TreasureLevel");
+ENDEXITSECTION
+ParentTargetEdge "__Start"
