@@ -4,4 +4,4 @@ DB_SleepingBags 1
 DB_FirstStairLoiterers 0
 DB_PlayersFightingGuards 0
 DB_RedajTalker 0
-DB_TreasureHunters 0
+DB_TreasureHunters 0DB_Origins 0

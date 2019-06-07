@@ -140,6 +140,15 @@ GlobalSetFlag("GOTJESTAVSHIRTEXP");
 //PartyAddExperience(_character, 1, 1, 40);
 DisplayText(_character, "It was triggered for realz.");
 */
+
+IF
+CharacterUsedItem(_character, ITEMGUID_TRHU_TowerDoor__000_e08ca1cc-8a6e-859e-3270-8111ef90456d)
+AND
+GlobalGetFlag("GOTEXPTOWERKEY", 1)
+THEN
+CharacterTeleportPartiesToTrigger(Level01TeleportTrigger_37a658aa-5f8b-4956-8b77-b95b24306de5, "IntoTower");
+//PlayEffect(_character, "RS3_FX_Skills_Air_FreeFall_Reappear_01");
+
 EXITSECTION
 
 ENDEXITSECTION

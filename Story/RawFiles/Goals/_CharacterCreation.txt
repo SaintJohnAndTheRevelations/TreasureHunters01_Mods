@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-DB_CharacterCreationLevels("SYS_Character_Creation_A");
+/*DB_CharacterCreationLevels("SYS_Character_Creation_A");
 
 DB_GLO_FirstLevelAfterCharacterCreation("TowerForest");
 
@@ -17,8 +17,9 @@ DB_GenericOrigins((CHARACTERGUID)S_Player_GenericOrigin_7b6c1f26-fe4e-40bd-a5d0-
 DB_GenericOrigins((CHARACTERGUID)S_Player_GenericOrigin2_c451954c-73bf-46ce-a1d1-caa9bbdc3cfd);
 DB_GenericOrigins((CHARACTERGUID)S_Player_GenericOrigin3_41a06985-7851-4c29-8a78-398ccb313f39);
 DB_GenericOrigins((CHARACTERGUID)S_Player_GenericOrigin4_41a594ed-b768-4289-9f17-59f701cc6910);
+*/
 KBSECTION
-IF
+/*IF
 DB_CharacterCreationDummy(_Dummy)
 THEN
 DB_AvailableDummy(_Dummy);
@@ -334,6 +335,7 @@ CharacterRemoveFromParty((CHARACTERGUID)S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-8
 CharacterRemoveFromParty((CHARACTERGUID)S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f);
 CharacterRemoveFromParty((CHARACTERGUID)S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c);
 NOT DB_InCharacterCreation(_Value);
+*/
 EXITSECTION
 
 ENDEXITSECTION
